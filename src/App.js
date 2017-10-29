@@ -33,6 +33,27 @@ class Grade extends Component {
 		return element;
 	}
 }
+
+class Restaurant extends Component {
+	render() {
+		var info = this.props.info;
+
+		return (
+			<div className="Restaurant">
+				<div className="name">{info.name}</div>
+				<div className="address">
+					<div className="street">
+						{info.building}&nbsp;{info.street}
+					</div>
+					<div className="boro">
+						{info.boro},&nbsp;NY&nbsp;{info.zipcode}
+					</div>
+				</div>
+				<div className="inspection-grade">
+					<Grade value={info.inspections[0].grade} />
+				</div>
+			</div>
+		);
 	}
 }
 
