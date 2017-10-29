@@ -12,7 +12,24 @@ class ThomasLogo extends Component {
 	}
 }
 
-class Search extends Component {
+class SearchForm extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { value: '' };
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleChange(event) {
+		this.setState({ value: event.target.value });
+	}
+
+	handleSubmit(event) {
+		event.preventDefault(); // prevent default form submit
+		console.log('form data', this.state.value);
+	}
+
 	render() {
 		return (
 			<div className="Restaurant-search">
@@ -21,23 +38,36 @@ class Search extends Component {
 					<select>
 						<option value="all">All</option>
 					</select>
-					<input type="textbox" id="SearchBox" />
-					<input type="button" id="submit" value="Submit" />
+					<input
+						type="textbox"
+						value={this.state.value}
+						onChange={this.handleChange}
+					/>
+					<input
+						type="submit"
+						value="Submit"
+						onClick={this.handleSubmit}
+					/>
 				</form>
+				<div className="Letter-grades">
+					<Image src={gradeA} alt="Grade A" />
+					<Image src={gradeB} alt="Grade B" />
+					<Image src={gradeC} alt="Grade C" />
+					<Image src={gradeGP} alt="Grade Pending" />
+				</div>
 			</div>
 		);
 	}
 }
 
-class Grades extends Component {
+class Image extends Component {
 	render() {
 		return (
-			<div className="Letter-grades">
-				<img src={gradeA} alt="Grade A" />
-				<img src={gradeB} alt="Grade B" />
-				<img src={gradeC} alt="Grade C" />
-				<img src={gradeGP} alt="Grade Pending" />
-			</div>
+			<img
+				src={this.props.src}
+				className={this.props.className}
+				alt={this.props.alt}
+			/>
 		);
 	}
 }
@@ -47,12 +77,11 @@ class App extends Component {
 		return (
 			<div className="App">
 				<header className="App-header">
-					<ThomasLogo />
+					<Image src={logo} alt="Thomas Logo" />
 				</header>
-				<Search />
-				<Grades />
+				<SearchForm />
 				<footer className="App-footer">
-					<ThomasLogo />
+					<Image src={logo} alt="Thomas Logo" />
 				</footer>
 			</div>
 		);
