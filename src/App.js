@@ -15,14 +15,25 @@ class ThomasLogo extends Component {
 class SearchForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { value: '' };
+		this.state = {
+			searchFilter: 'all',
+			searchPage: '1',
+			searchQuery: '',
+			searchResults: []
+		};
 
-		this.handleChange = this.handleChange.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(event) {
-		this.setState({ value: event.target.value });
+	handleInputChange(event) {
+		var target = event.target;
+		var value = target.value;
+		var name = target.name;
+
+		this.setState({
+			[name]: value
+		});
 	}
 
 	handleSubmit(event) {
@@ -35,13 +46,22 @@ class SearchForm extends Component {
 			<div className="Restaurant-search">
 				<form>
 					<div className="title">NYC Restaurants</div>
-					<select>
+					<select
+						name="searchFilter"
+						value={this.state.searchFilter}
+						onChange={this.handleInputChange}
+					>
 						<option value="all">All</option>
+						<option value="a">Grade A</option>
+						<option value="b">Grade B</option>
+						<option value="c">Grade C</option>
+						<option value="gp">Grade Pending</option>
 					</select>
 					<input
+						name="searchQuery"
 						type="textbox"
-						value={this.state.value}
-						onChange={this.handleChange}
+						value={this.state.searchQuery}
+						onChange={this.handleInputChange}
 					/>
 					<input
 						type="submit"
