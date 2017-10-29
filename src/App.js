@@ -6,7 +6,8 @@ import gradeC from './c.png';
 import gradeGP from './GP.png';
 import './App.css';
 
-class ThomasLogo extends Component {
+const apiKey = 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb';
+
 class Grade extends Component {
 	render() {
 		var element;
@@ -68,7 +69,31 @@ class SearchForm extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault(); // prevent default form submit
-		console.log('form data', this.state.value);
+
+		var _this = this;
+		var paramString = '?q=' + this.state.searchQuery;
+		var request = new XMLHttpRequest();
+
+		request.open(
+			'GET',
+			'https://restaurant-service.tpco.info/restaurants' + paramString
+		);
+		request.setRequestHeader('X-Api-Key', apiKey);
+
+		request.onreadystatechange = function() {
+			if (this.readyState === 4) {
+				var data = JSON.parse(this.responseText);
+				console.log('restaurants', data);
+
+				let restaurants = data.map(function(restaurant) {
+					return <Restaurant info={restaurant} />;
+				});
+
+				_this.setState({ searchResults: restaurants });
+			}
+		};
+
+		request.send();
 	}
 
 	render() {
