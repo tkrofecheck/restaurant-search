@@ -7,8 +7,31 @@ import gradeGP from './GP.png';
 import './App.css';
 
 class ThomasLogo extends Component {
+class Grade extends Component {
 	render() {
-		return <img src={logo} className="Thomas-logo" alt="logo" />;
+		var element;
+
+		switch (this.props.value) {
+			case 'A':
+				element = <Image src={gradeA} alt="Grade A" />;
+				break;
+
+			case 'B':
+				element = <Image src={gradeB} alt="Grade B" />;
+				break;
+
+			case 'C':
+				element = <Image src={gradeC} alt="Grade C" />;
+				break;
+
+			default:
+				element = <Image src={gradeGP} alt="Grade Pending" />;
+				break;
+		}
+
+		return element;
+	}
+}
 	}
 }
 
@@ -19,7 +42,14 @@ class SearchForm extends Component {
 			searchFilter: 'all',
 			searchPage: '1',
 			searchQuery: '',
-			searchResults: []
+			searchResults: (
+				<div className="Letter-grades">
+					<Grade value="A" />
+					<Grade value="B" />
+					<Grade value="C" />
+					<Grade value="D" />
+				</div>
+			)
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -69,12 +99,7 @@ class SearchForm extends Component {
 						onClick={this.handleSubmit}
 					/>
 				</form>
-				<div className="Letter-grades">
-					<Image src={gradeA} alt="Grade A" />
-					<Image src={gradeB} alt="Grade B" />
-					<Image src={gradeC} alt="Grade C" />
-					<Image src={gradeGP} alt="Grade Pending" />
-				</div>
+				<div className="Search-results">{this.state.searchResults}</div>
 			</div>
 		);
 	}
