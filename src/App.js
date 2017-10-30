@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import logo from './thomas_logo.png';
-import gradeA from './a.png';
-import gradeB from './b.png';
-import gradeC from './c.png';
-import gradeGP from './GP.png';
-import blueSeal from './Nyc-seal-blue.png';
-import greySeal from './Seal_of_New_York_City_BW.png';
+import logo from './images/logos/thomas_logo.png';
+import gradeA from './images/letters/a.png';
+import gradeB from './images/letters/b.png';
+import gradeC from './images/letters/c.png';
+import gradeGP from './images/letters/GP.png';
+import blueSeal from './images/seals/Nyc-seal-blue.png';
+import greySeal from './images/seals/Seal_of_New_York_City_BW.png';
 import './App.css';
 
 const apiKey = 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb';
