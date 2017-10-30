@@ -7,7 +7,7 @@
   height: 80px;
 }
 
-.App-header {
+.App-header, .App-footer {
   background-color: rgb(14,53,78);
   padding: 15px 15%;
   text-align: left;
@@ -27,11 +27,22 @@
   bottom: 0px;
 }
 
+.Inspection-date::after {
+  content: attr(data-month) ' \2219 ' attr(data-date) ' \2219 ' attr(data-year);
+}
+
 .Restaurant-info {
   margin-bottom: 25px;
   outline: 1px solid #ababab;
   outline-offset: -1px;
   padding: 10px;
+  text-align: left;
+}
+
+.Restaurant-name {
+  color: rgb(14,53,78);
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 .Search-form {

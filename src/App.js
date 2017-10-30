@@ -11,18 +11,25 @@ import './App.css';
 
 const apiKey = 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb';
 
+function formatPhoneNumber(s) {
+	var s2 = (""+s).replace(/\D/g, '');
+	var m = s2.match(/^(\d{3})(\d{3})(\d{4})$/);
+	return (!m) ? null : "(" + m[1] + ") " + m[2] + "-" + m[3];
+}
+
 class Grade extends Component {
 	inspectionDate(inspection) {
 		if (typeof inspection !== 'undefined') {
 			var inspectionDate = new Date(inspection.date);
 			var date = inspectionDate.getDate();
-			var month = inspectionDate.getMonth();
+			var month = inspectionDate.getMonth() + 1;
 			var year = inspectionDate.getFullYear();
 			
+			date = (date < 10) ? '0' + date : date;
+			month = (month < 10) ? '0' + month : month;
+			
 			return (
-				<div className="Inspection-date">
-					{month}-{date}-{year}
-				</div>
+				<div className="Inspection-date" data-month={month} data-date={date} data-year={year}></div>
 			);
 		}
 	}
@@ -63,13 +70,15 @@ class Grade extends Component {
 
 class Address extends Component {
 	render() {
+		var phone = formatPhoneNumber(this.props.phone);
+
 		return (
 			<div>
-				<div className="street">
-					{this.props.building}&nbsp;{this.props.street}
+				<div className="address">
+					{this.props.building}&nbsp;{this.props.street},&nbsp;{this.props.boro},&nbsp;NY&nbsp;{this.props.zipcode}
 				</div>
-				<div className="boro">
-					{this.props.boro},&nbsp;NY&nbsp;{this.props.zipcode}
+				<div className="phone">
+					{phone}
 				</div>
 			</div>
 		);
@@ -129,22 +138,22 @@ class Restaurant extends Component {
 			flexDirection: 'column',
 			alignItems: 'center',
 			position: 'absolute',
-			right: '20px',
+			right: '30px',
 			top: '35%',
 			boxShadow: '0px 2px 2px #ababab'
 		};
 
 		return (
-			<div className="col-sm-4">
+			<div className="col-sm-4" data-id={info._id}>
 				<div style={restaurantStyle}></div>
 				<div className="Restaurant-inspection">
 					<Grade inspection={info.inspections[0]} gradeStyle={gradeStyle} containerStyle={containerStyle}/>
 				</div>
 				<div className="Restaurant-info">
-					<div className="Restaurant-cuisine">{info.cuisine}</div>
-					<div className="Restaurant-name">{info.name}</div>
+				<div className="Restaurant-name">{info.name}</div>
+				<div className="Restaurant-cuisine">{info.cuisine}-$$$$</div>
 					<div className="Restaurant-address">
-						<Address building={info.building} street={info.street} boro={info.boro} state={info.state} zip={info.state}/>
+						<Address building={info.building} street={info.street} boro={info.boro} state={info.state} zip={info.state} phone={info.phone}/>
 					</div>
 				</div>
 			</div>
@@ -215,11 +224,17 @@ class SearchForm extends Component {
 		});
 	}
 
+	wrapRestuarants(restaurants) {
+		return (
+			<div className="row">{restaurants}</div>
+		);
+	}
+
 	handleSubmit(event) {
 		event.preventDefault(); // prevent default form submit
 
 		var _this = this;
-		var paramString = '?q=' + this.state.searchQuery + '&limit=13';
+		var paramString = '?q=' + this.state.searchQuery;
 		var request = new XMLHttpRequest();
 
 		request.open(
@@ -237,7 +252,7 @@ class SearchForm extends Component {
 					return <Restaurant info={restaurant} key={index} index={index} />;
 				});
 
-				_this.setState({ searchResults: restaurants });
+				_this.setState({ searchResults: _this.wrapRestuarants(restaurants) });
 			}
 		};
 
@@ -261,7 +276,7 @@ class SearchForm extends Component {
 						<Button bsStyle="success" onClick={this.handleSubmit}>Search</Button>
 					</Form>
 				</div>
-				<div className="container Search-results">
+				<div className="container-fluid Search-results">
 					{this.state.searchResults}
 				</div>
 			</div>
