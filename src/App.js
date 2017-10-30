@@ -4,6 +4,8 @@ import gradeA from './a.png';
 import gradeB from './b.png';
 import gradeC from './c.png';
 import gradeGP from './GP.png';
+import blueSeal from './Nyc-seal-blue.png';
+import greySeal from './Seal_of_New_York_City_BW.png';
 import './App.css';
 
 const apiKey = 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb';
@@ -11,6 +13,7 @@ const apiKey = 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb';
 class Grade extends Component {
 	render() {
 		var element;
+		var divStyle;
 
 		switch (this.props.value) {
 			case 'A':
@@ -30,7 +33,11 @@ class Grade extends Component {
 				break;
 		}
 
-		return element;
+		divStyle = {
+			backgroundImage : (this.props.color === 'blue') ? 'url(' + blueSeal + ')' : 'url(' + greySeal + ')'
+		};
+
+		return <div class="nyc-seal" style={divStyle}>{element}</div>;
 	}
 }
 
@@ -66,10 +73,10 @@ class SearchForm extends Component {
 			searchQuery: '',
 			searchResults: (
 				<div className="Letter-grades">
-					<Grade value="A" />
-					<Grade value="B" />
-					<Grade value="C" />
-					<Grade value="D" />
+					<Grade value="A" color="blue" />
+					<Grade value="B" color="blue" />
+					<Grade value="C" color="blue" />
+					<Grade value="D" color="blue" />
 				</div>
 			)
 		};
