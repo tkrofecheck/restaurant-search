@@ -127,32 +127,25 @@ class SearchForm extends Component {
 	render() {
 		return (
 			<div className="Restaurant-search">
-				<form>
+				<div className="jumbotron Search-form">
 					<div className="title">NYC Restaurants</div>
-					<select
-						name="searchFilter"
-						value={this.state.searchFilter}
-						onChange={this.handleInputChange}
-					>
-						<option value="all">All</option>
-						<option value="a">Grade A</option>
-						<option value="b">Grade B</option>
-						<option value="c">Grade C</option>
-						<option value="gp">Grade Pending</option>
-					</select>
-					<input
-						name="searchQuery"
-						type="textbox"
-						value={this.state.searchQuery}
-						onChange={this.handleInputChange}
-					/>
-					<input
-						type="submit"
-						value="Submit"
-						onClick={this.handleSubmit}
-					/>
-				</form>
-				<div className="Search-results">{this.state.searchResults}</div>
+					<Form inline>
+						<DropdownButton bsStyle="default" title="All" id="searchFilter" onSelect={this.handleGradeType}>
+							<MenuItem eventKey="all" active>All</MenuItem>
+							<MenuItem eventKey="a">Grade A</MenuItem>
+							<MenuItem eventKey="b">Grade B</MenuItem>
+							<MenuItem eventKey="c">Grade C</MenuItem>
+							<MenuItem eventKey="gp">Grade Pending</MenuItem>
+						</DropdownButton>
+						<FormControl type="text" id="searchQuery" value={this.state.searchQuery} onChange={this.handleInputChange} />
+						<Button bsStyle="success" onClick={this.handleSubmit}>Search</Button>
+					</Form>
+				</div>
+				<div className="container Search-results">
+					<div className="row">
+						{this.state.searchResults}
+					</div>
+				</div>
 			</div>
 		);
 	}
