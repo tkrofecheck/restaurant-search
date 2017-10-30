@@ -5,11 +5,13 @@ import gradeA from './images/letters/a.png';
 import gradeB from './images/letters/b.png';
 import gradeC from './images/letters/c.png';
 import gradeGP from './images/letters/GP.png';
+import gradeBgStart from './images/restaurants/image_7.jpg';
 import blueSeal from './images/seals/Nyc-seal-blue.png';
 import greySeal from './images/seals/Seal_of_New_York_City_BW.png';
 import './App.css';
 
 const apiKey = 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb';
+const gradeLetters = ['A','B','C','GP'];
 
 function formatPhoneNumber(s) {
 	var s2 = (""+s).replace(/\D/g, '');
@@ -25,8 +27,12 @@ class Grade extends Component {
 			var month = inspectionDate.getMonth() + 1;
 			var year = inspectionDate.getFullYear();
 			
-			date = (date < 10) ? '0' + date : date;
-			month = (month < 10) ? '0' + month : month;
+			function addZero(num) {
+				return (num < 10) ? '0' + num : num
+			}
+
+			date = addZero(date);
+			month = addZero(month);
 
 			return (
 				<div className="Inspection-date" data-month={month} data-date={date} data-year={year}></div>
@@ -166,7 +172,16 @@ class SearchForm extends Component {
 		super(props);
 
 		var gradeStyle = {
-			width: 'auto'
+			display: 'flex',
+			alignSelf: 'center',
+			justifySelf: 'center',
+			width: '30%'
+		};
+
+		var gradesBackground = {
+			backgroundImage: 'url(' + gradeBgStart + ')',
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: 'cover'
 		};
 
 		var containerStyle = {
@@ -176,30 +191,31 @@ class SearchForm extends Component {
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: '60%',
 			height: '200px',
+			maxWidth: '200px',
 			display: 'flex',
 			justifyContent: 'center',
-			alignItems: 'center'
+			alignItems: 'center',
+			margin: '0 auto'
 		};
 
+		let initialStateResults = gradeLetters.map(function(letter) {
+			return (
+				<div className="col-sm-6 col-md-3">
+					<Grade value={letter} gradeStyle={gradeStyle} containerStyle={containerStyle} />
+				</div>
+			);
+		});
+
 		this.state = {
+			gradesBackground: gradesBackground,
+			resultsFound: false,
 			searchBackground: 'rgb(17,61,89)',
 			searchFilter: 'all',
 			searchPage: '1',
 			searchQuery: '',
 			searchResults: (
 				<div className="row Letter-grades">
-					<div className="col-sm-3">
-						<Grade value="A" gradeStyle={gradeStyle} containerStyle={containerStyle} />
-					</div>
-					<div className="col-sm-3">
-						<Grade value="B" gradeStyle={gradeStyle} containerStyle={containerStyle} />
-					</div>
-					<div className="col-sm-3">
-						<Grade value="C" gradeStyle={gradeStyle} containerStyle={containerStyle} />
-					</div>
-					<div className="col-sm-3">
-						<Grade value="GP" gradeStyle={gradeStyle} containerStyle={containerStyle}/>
-					</div>
+					{initialStateResults}
 				</div>
 			)
 		};
@@ -253,8 +269,10 @@ class SearchForm extends Component {
 					return <Restaurant info={restaurant} key={index} index={index} />;
 				});
 
+				_this.setState({ resultsFound: true });
 				_this.setState({ searchResults: _this.wrapRestuarants(restaurants) });
-				_this.setState({ searchBackground: 'url(' + data[data.length-1].imageUrl + ')' });
+				_this.setState({ searchBackground: 'url(' + data[data.length-1].imageUrl + ') no-repeat' });
+				_this.setState({ gradesBackground: null });
 			}
 		};
 
@@ -263,10 +281,14 @@ class SearchForm extends Component {
 
 	render() {
 		var searchFormStyle = {
-			background: this.state.searchBackground,
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: 'cover'
+			background: this.state.searchBackground
 		};
+
+		var resultsClass = 'Search-results';
+
+		if (this.state.resultsFound) {
+			resultsClass += ' container-fluid';
+		}
 		
 		return (
 			<div className="Restaurant-search">
@@ -284,8 +306,10 @@ class SearchForm extends Component {
 						<Button bsStyle="success" onClick={this.handleSubmit}>Search</Button>
 					</Form>
 				</div>
-				<div className="container-fluid Search-results">
-					{this.state.searchResults}
+				<div className={resultsClass}>
+					<div className="jumbotron" style={this.state.gradesBackground}>
+						{this.state.searchResults}
+					</div>
 				</div>
 			</div>
 		);
