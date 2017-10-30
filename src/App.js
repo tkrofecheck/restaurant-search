@@ -27,7 +27,7 @@ class Grade extends Component {
 			
 			date = (date < 10) ? '0' + date : date;
 			month = (month < 10) ? '0' + month : month;
-			
+
 			return (
 				<div className="Inspection-date" data-month={month} data-date={date} data-year={year}></div>
 			);
@@ -139,7 +139,7 @@ class Restaurant extends Component {
 			alignItems: 'center',
 			position: 'absolute',
 			right: '30px',
-			top: '35%',
+			top: '32%',
 			boxShadow: '0px 2px 2px #ababab'
 		};
 
@@ -182,6 +182,7 @@ class SearchForm extends Component {
 		};
 
 		this.state = {
+			searchBackground: 'rgb(17,61,89)',
 			searchFilter: 'all',
 			searchPage: '1',
 			searchQuery: '',
@@ -253,6 +254,7 @@ class SearchForm extends Component {
 				});
 
 				_this.setState({ searchResults: _this.wrapRestuarants(restaurants) });
+				_this.setState({ searchBackground: 'url(' + data[data.length-1].imageUrl + ')' });
 			}
 		};
 
@@ -260,9 +262,15 @@ class SearchForm extends Component {
 	}
 
 	render() {
+		var searchFormStyle = {
+			background: this.state.searchBackground,
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: 'cover'
+		};
+		
 		return (
 			<div className="Restaurant-search">
-				<div className="jumbotron Search-form">
+				<div className="jumbotron Search-form" style={searchFormStyle}>
 					<div className="title">NYC Restaurants</div>
 					<Form inline>
 						<DropdownButton bsStyle="default" title="All" id="searchFilter" onSelect={this.handleGradeType}>
