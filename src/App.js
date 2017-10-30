@@ -10,45 +10,65 @@ import greySeal from './images/seals/Seal_of_New_York_City_BW.png';
 import './App.css';
 
 const apiKey = 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb';
-
 class Grade extends Component {
+	inspectionDate(inspection) {
+		if (typeof inspection !== 'undefined') {
+			return (
+				<div className="Inspection-date">
+					{inspection.date}
+				</div>
+			);
+		}
+	}
+	
 	render() {
-		var element;
+		var inspection = this.props.inspection;
+		var grade;
 		var divStyle;
 
 		switch (this.props.value) {
 			case 'A':
-				element = <Image src={gradeA} alt="Grade A" />;
+				grade = <Image src={gradeA} alt="Grade A" />;
 				break;
 
 			case 'B':
-				element = <Image src={gradeB} alt="Grade B" />;
+				grade = <Image src={gradeB} alt="Grade B" />;
 				break;
 
 			case 'C':
-				element = <Image src={gradeC} alt="Grade C" />;
+				grade = <Image src={gradeC} alt="Grade C" />;
 				break;
 
 			default:
-				element = <Image src={gradeGP} alt="Grade Pending" />;
+				grade = <Image src={gradeGP} alt="Grade Pending" />;
 				break;
 		}
 
 		divStyle = {
-			backgroundImage : (this.props.color === 'blue') ? 'url(' + blueSeal + ')' : 'url(' + greySeal + ')'
+			backgroundImage: this.props.seal === 'blue' ? 'url(' + blueSeal + ')' : 'url(' + greySeal + ')'
 		};
 
-		return <div class="nyc-seal" style={divStyle}>{element}</div>;
+		return (
+			<div className={this.props.classNames} style={divStyle}>
+				{grade}
+				{this.inspectionDate(inspection)}
+			</div>
+		);
 	}
 }
 
 class Restaurant extends Component {
 	render() {
 		var info = this.props.info;
+		var restaurantStyle = {
+			backgroundImage: 'url(' + info.imageUrl + ')',
+			backgroundRepeat: 'no-repeat'
+		};
 
 		return (
-			<div className="Restaurant">
+			<div className="col-sm-3 col-md-6 Restaurant" style={restaurantStyle}>
 				<div className="name">{info.name}</div>
+				<div className="cuisine">{info.cuisine}</div>
 				<div className="address">
 					<div className="street">
 						{info.building}&nbsp;{info.street}
@@ -58,7 +78,7 @@ class Restaurant extends Component {
 					</div>
 				</div>
 				<div className="inspection-grade">
-					<Grade value={info.inspections[0].grade} />
+					<Grade inspection={info.inspections[0]} value={info.inspections[0].grade} seal="grey"/>
 				</div>
 			</div>
 		);
@@ -74,22 +94,29 @@ class SearchForm extends Component {
 			searchQuery: '',
 			searchResults: (
 				<div className="Letter-grades">
-					<Grade value="A" color="blue" />
-					<Grade value="B" color="blue" />
-					<Grade value="C" color="blue" />
-					<Grade value="D" color="blue" />
+					<Grade value="A" seal="blue" />
+					<Grade value="B" seal="blue" />
+					<Grade value="C" seal="blue" />
+					<Grade value="GP" seal="blue" />
 				</div>
 			)
 		};
 
+		this.handleGradeType = this.handleGradeType.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleGradeType(value) {
+		this.setState({
+			searchFilter: value
+		});
 	}
 
 	handleInputChange(event) {
 		var target = event.target;
 		var value = target.value;
-		var name = target.name;
+		var name = target.id;
 
 		this.setState({
 			[name]: value
@@ -100,7 +127,7 @@ class SearchForm extends Component {
 		event.preventDefault(); // prevent default form submit
 
 		var _this = this;
-		var paramString = '?q=' + this.state.searchQuery;
+		var paramString = '?q=' + this.state.searchQuery + '&limit=13';
 		var request = new XMLHttpRequest();
 
 		request.open(
@@ -112,10 +139,10 @@ class SearchForm extends Component {
 		request.onreadystatechange = function() {
 			if (this.readyState === 4) {
 				var data = JSON.parse(this.responseText);
-				console.log('restaurants', data);
+				//console.log('restaurants', data);
 
-				let restaurants = data.map(function(restaurant) {
-					return <Restaurant info={restaurant} />;
+				let restaurants = data.map(function(restaurant, index) {
+					return <Restaurant info={restaurant} key={index} index={index} />;
 				});
 
 				_this.setState({ searchResults: restaurants });
@@ -155,11 +182,7 @@ class SearchForm extends Component {
 class Image extends Component {
 	render() {
 		return (
-			<img
-				src={this.props.src}
-				className={this.props.className}
-				alt={this.props.alt}
-			/>
+			<img src={this.props.src} className={this.props.className} alt={this.props.alt} />
 		);
 	}
 }
