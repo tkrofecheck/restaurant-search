@@ -8,9 +8,9 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  background-color: rgb(14,53,78);
+  padding: 15px 15%;
+  text-align: left;
   color: white;
 }
 
@@ -22,7 +22,18 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Inspection-date {
+  position: absolute;
+  bottom: 0px;
+}
+
+.Restaurant-info {
+  margin-bottom: 25px;
+  outline: 1px solid #ababab;
+  outline-offset: -1px;
+  padding: 10px;
+}
+
+.Search-form {
+  background-color: rgb(17,61,89);
 }
