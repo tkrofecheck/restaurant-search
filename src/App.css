@@ -97,18 +97,24 @@
 
 .Restaurant-modal {
   position: fixed;
-  display: block;
+  display: none;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 85%;
   height: 85%;
   background: #ffffff;
-  box-shadow: 0px 0px 1000000px 200px #555555;;
+  box-shadow: 0px 0px 1000000px 200px #555555;
 }
 
-.Restaurant-modal.hidden {
-  display: none;
+.Restaurant-modal.show {
+  display: block;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.Restaurant-modal.show.visible {
+  opacity: 1;
 }
 
 .Restaurant-modal .Restaurant-details {

@@ -266,24 +266,38 @@ class SearchForm extends Component {
 		event.stopPropagation();
 
 		var _this = this;
-		var modalClass;
+		var modalClass = 'Restaurant-modal';
 		
 		if (display) {
-			modalClass = 'Restaurant-modal';
+			modalClass = 'Restaurant-modal show'
 			this.setState({ restaurantContent:
 				<div className="Restaurant-details">
 					<div className="close" onClick={(event) => _this.showRestaurantDetails(event, null, false)}>Close</div>
 					<RestaurantMoreInfo data={content} />
 				</div>
-			});
+			},function() {
+				this.setState({ modalClass: modalClass });
+
+				setTimeout(function() {
+					modalClass = 'Restaurant-modal show visible';
+					this.setState({ modalClass: modalClass });
+				}.bind(this), 10);
+			}.bind(this));
 		} else {
-			modalClass = 'Restaurant-modal hidden';
+			modalClass = 'Restaurant-modal show';
 			this.setState({ restaurantContent:
 				<div></div>
-			});
+			},function() {
+				this.setState({ modalClass: modalClass });
+
+				setTimeout(function() {
+					modalClass = 'Restaurant-modal';
+					this.setState({ modalClass: modalClass });
+				}.bind(this), 510); // Keep timeout slightly higher than transition time of 500ms
+
+			}.bind(this));
 		}
 
-		this.setState({ modalClass: modalClass });
 	}
 
 	_handleKeyPress(event) {
@@ -361,9 +375,9 @@ class SearchForm extends Component {
 					<div className="title">NYC Restaurants</div>
 					<Form inline>
 						<div className="row">
-							<div class="col-lg-12">
-								<div class="input-group">
-									<div class="input-group-btn">
+							<div className="col-lg-12">
+								<div className="input-group">
+									<div className="input-group-btn">
 										<FormControl componentClass="select" placeholder="all" bsStyle="default" bsSize="large" id="searchFilter" onSelect={(event) => this.handleGradeType(event)}>
 											<option value="all">All</option>
 										</FormControl>
