@@ -170,7 +170,6 @@ class SearchForm extends Component {
 		return (
 			<div>
 				<div className="row">{restaurants}</div>
-				<Modal id={this.state.restaurantId} modalClass={this.state.modalClass} />
 			</div>
 		);
 	}
@@ -307,6 +306,7 @@ class SearchForm extends Component {
 						{this.state.searchResults}
 					</div>
 				</div>
+				<Modal id={this.state.restaurantId} modalClass={this.state.modalClass} />
 			</div>
 		);
 	}
