@@ -43,6 +43,20 @@
   margin: 0;
 }
 
+.Modal {
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+}
+
+.Modal.hidden{
+  display: none;
+}
+
 .Restaurant-info {
   margin-bottom: 25px;
   outline: 1px solid #ababab;

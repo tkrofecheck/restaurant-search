@@ -76,91 +76,13 @@ class Grade extends Component {
 
 class Address extends Component {
 	render() {
-		var phone = formatPhoneNumber(this.props.phone);
-
 		return (
 			<div>
 				<div className="address">
 					{this.props.building}&nbsp;{this.props.street},&nbsp;{this.props.boro},&nbsp;NY&nbsp;{this.props.zipcode}
 				</div>
 				<div className="phone">
-					{phone}
-				</div>
-			</div>
-		);
-	}
-}
-
-class Restaurant extends Component {
-	render() {
-		var info = this.props.info;
-		var restaurantStyle = {
-			backgroundImage: 'url(' + info.imageUrl + ')',
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: 'cover',
-			height: '200px'
-		};
-
-		var gradeStyle = {
-			width: (function() {
-				var percent = '50%';
-				
-				switch (info.inspections[0].grade) {
-					case 'A':
-						percent = '50%';
-						break;
-					case 'B':
-						percent = '44%';
-						break;
-					case 'C':
-						percent = '50%';
-						break;
-					default:
-						break;
-				}
-
-				return percent;
-			})(),
-			position: 'relative',
-			display: 'block',
-			top: (function() {
-				if (info.inspections[0].grade === 'A' || info.inspections[0].grade === 'B' || info.inspections[0].grade === 'C') {
-					return '10%';
-				} else {
-					return '20%';
-				}
-			})()
-		};
-
-		var containerStyle = {
-			backgroundColor: '#ffffff',
-			backgroundImage: 'url(' + greySeal + ')',
-			backgroundPosition: 'center 15%',
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: '60%',
-			width: '100px',
-			height: '100px',
-			display: 'flex',
-			flexDirection: 'column',
-			alignItems: 'center',
-			position: 'absolute',
-			right: '30px',
-			top: '32%',
-			boxShadow: '0px 2px 2px #ababab'
-		};
-
-		return (
-			<div className="col-sm-4" data-id={info._id}>
-				<div style={restaurantStyle}></div>
-				<div className="Restaurant-inspection">
-					<Grade inspection={info.inspections[0]} gradeStyle={gradeStyle} containerStyle={containerStyle}/>
-				</div>
-				<div className="Restaurant-info">
-				<div className="Restaurant-name">{info.name}</div>
-				<div className="Restaurant-cuisine">{info.cuisine}-$$$$</div>
-					<div className="Restaurant-address">
-						<Address building={info.building} street={info.street} boro={info.boro} state={info.state} zip={info.state} phone={info.phone}/>
-					</div>
+					{formatPhoneNumber(this.props.phone)}
 				</div>
 			</div>
 		);
@@ -198,9 +120,9 @@ class SearchForm extends Component {
 			margin: '0 auto'
 		};
 
-		let initialStateResults = gradeLetters.map(function(letter) {
+		let initialStateResults = gradeLetters.map(function(letter, index) {
 			return (
-				<div className="col-sm-6 col-md-3">
+				<div key={index} className="col-sm-6 col-md-3">
 					<Grade value={letter} gradeStyle={gradeStyle} containerStyle={containerStyle} />
 				</div>
 			);
@@ -217,12 +139,15 @@ class SearchForm extends Component {
 				<div className="row Letter-grades">
 					{initialStateResults}
 				</div>
-			)
+			),
+			modalClass: 'Modal hidden',
+			restaurantId: null
 		};
 
 		this.handleGradeType = this.handleGradeType.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.showRestaurantDetails = this.showRestaurantDetails.bind(this);
 	}
 
 	handleGradeType(value) {
@@ -243,8 +168,31 @@ class SearchForm extends Component {
 
 	wrapRestuarants(restaurants) {
 		return (
-			<div className="row">{restaurants}</div>
+			<div>
+				<div className="row">{restaurants}</div>
+				<Modal id={this.state.restaurantId} modalClass={this.state.modalClass} />
+			</div>
 		);
+	}
+
+	showRestaurantDetails(event, id, display) {
+		event.stopPropagation();
+		
+		console.log(id);
+
+		var modalClass;
+		
+		if (display) {
+			modalClass = 'Modal';
+			this.setState({ restaurantId: id });
+		} else {
+			modalClass = 'Modal hidden';
+			this.setState({ restaurantId: null });
+		}
+
+		console.log(modalClass);
+
+		this.setState({ modalClass: modalClass });
 	}
 
 	handleSubmit(event) {
@@ -265,8 +213,56 @@ class SearchForm extends Component {
 				var data = JSON.parse(this.responseText);
 				//console.log('restaurants', data);
 
+				var restaurantStyle;
+				var gradeStyle;
+		
+				var containerStyle = {
+					backgroundColor: '#ffffff',
+					backgroundImage: 'url(' + greySeal + ')',
+					backgroundPosition: 'center 15%',
+					backgroundRepeat: 'no-repeat',
+					backgroundSize: '60%',
+					width: '100px',
+					height: '100px',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					position: 'absolute',
+					right: '30px',
+					top: '32%',
+					boxShadow: '0px 2px 2px #ababab'
+				};				
+
 				let restaurants = data.map(function(restaurant, index) {
-					return <Restaurant info={restaurant} key={index} index={index} />;
+					restaurantStyle = {
+						backgroundImage: 'url(' + restaurant.imageUrl + ')',
+						backgroundRepeat: 'no-repeat',
+						backgroundSize: 'cover',
+						height: '200px'
+					};
+
+					gradeStyle = {
+						position: 'relative',
+						display: 'block',
+						width: (restaurant.inspections[0].grade === 'B') ? '44%' : '50%',
+						top: (restaurant.inspections[0].grade === 'A' || restaurant.inspections[0].grade === 'B' || restaurant.inspections[0].grade === 'C') ? '10%' : '20%'
+					};
+
+					return (
+						<div key={index} className="col-sm-4" onClick={(event) => _this.showRestaurantDetails(event, restaurant._id, true)}>
+							<div className="Restaurant-photo" style={restaurantStyle}></div>
+							<div className="Restaurant-inspection">
+								<Grade inspection={restaurant.inspections[0]} gradeStyle={gradeStyle} containerStyle={containerStyle}/>
+							</div>
+							<div className="Restaurant-info">
+								<div className="Restaurant-name">{restaurant.name}</div>
+								<div className="Restaurant-cuisine">{restaurant.cuisine}-$$$$</div>
+								<div className="Restaurant-address">
+									<Address building={restaurant.building} street={restaurant.street} boro={restaurant.boro} state={restaurant.state} zip={restaurant.state} phone={restaurant.phone}/>
+								</div>
+							</div>
+						</div>
+					);
 				});
 
 				_this.setState({ resultsFound: true });
@@ -321,6 +317,16 @@ class Image extends Component {
 		return (
 			<img src={this.props.src} className={this.props.className} alt={this.props.alt} style={this.props.style}/>
 		);
+	}
+}
+
+class Modal extends Component {	
+	render() {		
+		return (
+			<div className={this.props.modalClass}>
+				{this.props.id}
+			</div>
+		)
 	}
 }
 
