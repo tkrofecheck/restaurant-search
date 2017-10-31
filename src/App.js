@@ -77,7 +77,7 @@ class Grade extends Component {
 		}
 
 		return (
-			<div className={this.props.classNames} style={this.props.containerStyle}>
+			<div className={this.props.className} style={this.props.containerStyle}>
 				{grade}
 				{date}
 			</div>
@@ -125,7 +125,6 @@ class RestaurantPhoto extends Component {
 			backgroundImage: 'url(' + this.props.url + ')',
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: 'cover',
-			height: this.props.height
 		};
 		
 		return (
@@ -157,7 +156,7 @@ class RestaurantMoreInfo extends Component {
 		
 		return (
 			<div className="Restaurant-moreinfo">
-				<RestaurantPhoto url={data.imageUrl} height="40%"/>
+				<RestaurantPhoto url={data.imageUrl}/>
 				<div className="pad-20">
 					<div className="Restaurant-info">
 						<div className="Restaurant-contact">
@@ -204,8 +203,6 @@ class SearchForm extends Component {
 			backgroundPosition: 'center center',
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: '60%',
-			height: '200px',
-			maxWidth: '200px',
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
@@ -215,7 +212,7 @@ class SearchForm extends Component {
 		let initialStateResults = _map(gradeLetters, function(letter, index) {
 			return (
 				<div key={index} className="col-sm-6 col-md-3">
-					<Grade value={letter} gradeStyle={gradeStyle} containerStyle={containerStyle} showDate="false" />
+					<Grade value={letter} gradeStyle={gradeStyle} containerStyle={containerStyle} className="def_gradeLetter" showDate="false" />
 				</div>
 			);
 		});
@@ -315,21 +312,8 @@ class SearchForm extends Component {
 				var gradeStyle;
 		
 				var containerStyle = {
-					backgroundColor: '#ffffff',
-					backgroundImage: 'url(' + greySeal + ')',
-					backgroundPosition: 'center 15%',
-					backgroundRepeat: 'no-repeat',
-					backgroundSize: '60%',
-					width: '100px',
-					height: '100px',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					position: 'absolute',
-					right: '30px',
-					top: '32%',
-					boxShadow: '0px 2px 2px #ababab'
-				};				
+					backgroundImage: 'url(' + greySeal + ')'
+				};
 
 				let restaurants = data.map(function(restaurant, index) {
 					gradeStyle = {
@@ -341,9 +325,9 @@ class SearchForm extends Component {
 
 					return (
 						<div key={index} className="col-sm-4" onClick={(event) => _this.showRestaurantDetails(event, restaurant, true)}>
-							<RestaurantPhoto url={restaurant.imageUrl} height="200px" />
+							<RestaurantPhoto url={restaurant.imageUrl} />
 							<div className="Restaurant-inspection">
-								<Grade inspection={restaurant.inspections[0]} gradeStyle={gradeStyle} containerStyle={containerStyle} showDate="true" />
+								<Grade className="tile_gradeLetter" inspection={restaurant.inspections[0]} gradeStyle={gradeStyle} containerStyle={containerStyle} showDate="true" />
 							</div>
 							<div className="Restaurant-info">
 								<div className="Restaurant-name">{restaurant.name}</div>

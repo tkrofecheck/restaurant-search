@@ -1,4 +1,5 @@
 .App {
+  min-width: 320px;
   text-align: center;
 }
 
@@ -36,6 +37,28 @@
   content: attr(data-month) ' \2219 ' attr(data-date) ' \2219 ' attr(data-year);
 }
 
+.def_gradeLetter {
+  height: 60px;
+  max-width: 60px;
+}
+
+.tile_gradeLetter {
+  background-image: attr(data-image);
+  background-color: #ffffff;
+  background-position: center 15%;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  right: 30px;
+  top: 25%;
+  box-shadow: 0px 2px 2px #ababab;
+}
+
 .jumbotron {
   margin-bottom: 0;
 }
@@ -66,6 +89,10 @@
 
 .Letter-grades.row {
   margin: 0;
+}
+
+.Restaurant-photo {
+  height: 125px;
 }
 
 .Restaurant-modal {
@@ -165,12 +192,44 @@
   .btn-success {
     margin-left: 10px;
   }
+
+  .def_gradeLetter {
+    height: 100px;
+    max-width: 100px;
+  }
+
+  .tile_gradeLetter {
+    width: 100px;
+    height: 100px;
+    top: 32%;
+  }
+
+  .Search-form .search-label > span {
+    font-size: 3em;
+  }
+
+  .Search-form .search-cuisine > span {
+    font-size: 2em;
+  }
+
+  .Restaurant-photo {
+    height: 175px;
+  }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) {  
   .Restaurant-modal .Restaurant-moreinfo .Restaurant-info .Restaurant-contact .Restaurant-name {
     font-size: 3em;
     line-height: 1.2em;
+  }
+
+  .def_gradeLetter {
+    height: 200px;
+    max-width: 200px;
+  }
+
+  .Restaurant-photo {
+    height: 200px;
   }
 }
 
@@ -207,7 +266,7 @@
   float: left;
   background-color: #ffffff;
   color: #555555;
-  font-size: 3em;
+  font-size: 1.5em;
   font-weight: 600;
   text-align: left;
   padding: 5px;
@@ -218,7 +277,7 @@
   float: left;
   background-color: rgb(69,176,230);
   color: #ffffff;
-  font-size: 2em;
+  font-size: 1em;
   font-weight: 600;
   font-style: italic;
   text-transform: uppercase;
