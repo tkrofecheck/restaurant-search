@@ -90,6 +90,18 @@ class Address extends Component {
 	}
 }
 
+class RestaurantInfo extends Component {
+	render() {
+		var data = JSON.stringify(this.props.data);
+		
+		return (
+			<div className="Restaurant-info">
+				{data}
+			</div>
+		)
+	}
+}
+
 class SearchForm extends Component {
 	constructor(props) {
 		super(props);
@@ -141,14 +153,13 @@ class SearchForm extends Component {
 					{initialStateResults}
 				</div>
 			),
-			modalClass: 'Modal hidden',
-			restaurantId: null
+			modalClass: 'Restaurant-modal hidden',
+			restaurantContent: ( 
+				<div></div>
+			)
 		};
 
-		this.handleGradeType = this.handleGradeType.bind(this);
-		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.showRestaurantDetails = this.showRestaurantDetails.bind(this);
+		autoBind(this);
 	}
 
 	handleGradeType(value) {
@@ -175,22 +186,26 @@ class SearchForm extends Component {
 		);
 	}
 
-	showRestaurantDetails(event, id, display) {
+	showRestaurantDetails(event, content, display) {
 		event.stopPropagation();
-		
-		console.log(id);
 
+		var _this = this;
 		var modalClass;
 		
 		if (display) {
-			modalClass = 'Modal';
-			this.setState({ restaurantId: id });
+			modalClass = 'Restaurant-modal';
+			this.setState({ restaurantContent:
+				<div className="Restaurant-details">
+					<div className="close" onClick={(event) => _this.showRestaurantDetails(event, null, false)}></div>
+					<RestaurantInfo data={content} />
+				</div>
+			});
 		} else {
-			modalClass = 'Modal hidden';
-			this.setState({ restaurantId: null });
+			modalClass = 'Restaurant-modal hidden';
+			this.setState({ restaurantContent:
+				<div></div>
+			});
 		}
-
-		console.log(modalClass);
 
 		this.setState({ modalClass: modalClass });
 	}
@@ -249,7 +264,7 @@ class SearchForm extends Component {
 					};
 
 					return (
-						<div key={index} className="col-sm-4" onClick={(event) => _this.showRestaurantDetails(event, restaurant._id, true)}>
+						<div key={index} className="col-sm-4" onClick={(event) => _this.showRestaurantDetails(event, restaurant, true)}>
 							<div className="Restaurant-photo" style={restaurantStyle}></div>
 							<div className="Restaurant-inspection">
 								<Grade inspection={restaurant.inspections[0]} gradeStyle={gradeStyle} containerStyle={containerStyle}/>
@@ -307,7 +322,7 @@ class SearchForm extends Component {
 						{this.state.searchResults}
 					</div>
 				</div>
-				<Modal id={this.state.restaurantId} modalClass={this.state.modalClass} />
+				<Modal content={this.state.restaurantContent} modalClass={this.state.modalClass} />
 			</div>
 		);
 	}
@@ -325,7 +340,7 @@ class Modal extends Component {
 	render() {		
 		return (
 			<div className={this.props.modalClass}>
-				{this.props.id}
+				{this.props.content}
 			</div>
 		)
 	}

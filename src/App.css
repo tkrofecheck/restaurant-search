@@ -43,7 +43,7 @@
   margin: 0;
 }
 
-.Modal {
+.Restaurant-modal {
   position: fixed;
   display: block;
   top: 50%;
@@ -53,8 +53,16 @@
   height: 80%;
 }
 
-.Modal.hidden{
+.Restaurant-modal.hidden{
   display: none;
+}
+
+.Restaurant-details .close {
+
+}
+
+.Restaurant-details .close::before {
+  content: '\2716';
 }
 
 .Restaurant-info {
