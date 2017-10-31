@@ -136,6 +136,9 @@ class RestaurantPhoto extends Component {
 class RestaurantMoreInfo extends Component {
 	render() {
 		var data = this.props.data;
+		var inspection = data.inspections[0];
+		var grade = inspection.grade === null ? 'Pending' : inspection.grade;
+
 		var gradeStyle = {
 			display: 'flex',
 			alignSelf: 'center',
@@ -167,13 +170,21 @@ class RestaurantMoreInfo extends Component {
 							</div>
 						</div>
 						<div className="Restaurant-inspection">
-							<Grade inspection={data.inspections[0]} gradeStyle={gradeStyle} containerStyle={containerStyle} showDate="false"/>
+							<Grade inspection={inspection} gradeStyle={gradeStyle} containerStyle={containerStyle} showDate="false"/>
 						</div>
 					</div>
 				</div>
 				<div className="Restaurant-inspection-info">
 					<div className="Inspection-heading">Inspections</div>
-					<InspectionDate date={data.inspections[0].date} display="true"/>
+					<div className="Inspection-violation">
+						<div className="Inspection-action">{inspection.action}</div>
+						<span>{inspection.violation_code}</span>
+						<span>{inspection.violation_desc}</span>
+					</div>
+					<div className="Inspection-score">Score: {inspection.score}</div>
+					<div className="Inspection-grade">Grade: {grade}</div>
+					<div className="Inspection-grade-date">Grade Date: {inspection.grade_date}</div>
+					<div className="Inspection-type">{inspection.inspection_type}</div>
 				</div>
 			</div>
 		)
@@ -269,7 +280,7 @@ class SearchForm extends Component {
 		var modalClass = 'Restaurant-modal';
 		
 		if (display) {
-			modalClass = 'Restaurant-modal show'
+			modalClass = 'Restaurant-modal show';
 			this.setState({ restaurantContent:
 				<div className="Restaurant-details">
 					<div className="close" onClick={(event) => _this.showRestaurantDetails(event, null, false)}>Close</div>
