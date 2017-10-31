@@ -179,60 +179,6 @@
   padding: 0px 20px 20px 20px;
 }
 
-@media screen and (min-width: 768px) {
-  .App-header img, .App-footer img {
-    height: 50px;
-  }
-  
-  .Restaurant-modal .Restaurant-moreinfo .Restaurant-info .Restaurant-contact .Restaurant-name {
-    font-size: 2em;
-    line-height: 1em;
-  }
-
-  .btn-success {
-    margin-left: 10px;
-  }
-
-  .def_gradeLetter {
-    height: 100px;
-    max-width: 100px;
-  }
-
-  .tile_gradeLetter {
-    width: 100px;
-    height: 100px;
-    top: 32%;
-  }
-
-  .Search-form .search-label > span {
-    font-size: 3em;
-  }
-
-  .Search-form .search-cuisine > span {
-    font-size: 2em;
-  }
-
-  .Restaurant-photo {
-    height: 175px;
-  }
-}
-
-@media screen and (min-width: 1024px) {  
-  .Restaurant-modal .Restaurant-moreinfo .Restaurant-info .Restaurant-contact .Restaurant-name {
-    font-size: 3em;
-    line-height: 1.2em;
-  }
-
-  .def_gradeLetter {
-    height: 200px;
-    max-width: 200px;
-  }
-
-  .Restaurant-photo {
-    height: 200px;
-  }
-}
-
 .Restaurant-info {
   margin-bottom: 25px;
   outline: 1px solid #ababab;
@@ -314,4 +260,58 @@
 .Search-results .jumbotron {
   background: none;
   padding: 15px 5%;
+}
+
+@media screen and (min-width: 768px) {
+  .App-header img, .App-footer img {
+    height: 50px;
+  }
+  
+  .Restaurant-modal .Restaurant-moreinfo .Restaurant-info .Restaurant-contact .Restaurant-name {
+    font-size: 2em;
+    line-height: 1em;
+  }
+
+  .btn-success {
+    margin-left: 10px;
+  }
+
+  .def_gradeLetter {
+    height: 100px;
+    max-width: 100px;
+  }
+
+  .tile_gradeLetter {
+    width: 100px;
+    height: 100px;
+    top: 32%;
+  }
+
+  .Search-form .search-label span {
+    font-size: 3em;
+  }
+
+  .Search-form .search-cuisine span {
+    font-size: 2em;
+  }
+
+  .Restaurant-photo {
+    height: 175px;
+  }
+}
+
+@media screen and (min-width: 1024px) {  
+  .Restaurant-modal .Restaurant-moreinfo .Restaurant-info .Restaurant-contact .Restaurant-name {
+    font-size: 3em;
+    line-height: 1.2em;
+  }
+
+  .def_gradeLetter {
+    height: 200px;
+    max-width: 200px;
+  }
+
+  .Restaurant-photo {
+    height: 200px;
+  }
 }
