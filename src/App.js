@@ -289,6 +289,12 @@ class SearchForm extends Component {
 		this.setState({ modalClass: modalClass });
 	}
 
+	_handleKeyPress(event) {
+		if (event.key === 'Enter') {
+			this.handleSubmit(event);
+		}
+	}
+
 	handleSubmit(event) {
 		event.preventDefault(); // prevent default form submit
 
@@ -377,7 +383,7 @@ class SearchForm extends Component {
 										<FormControl componentClass="select" placeholder="all" bsStyle="default" bsSize="large" id="searchFilter" onSelect={(event) => this.handleGradeType(event)}>
 											<option value="all">All</option>
 										</FormControl>
-										<FormControl type="text" bsSize="large" id="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} />
+										<FormControl type="text" bsSize="large" id="searchQuery" value={this.state.searchQuery} onChange={(event) => this.handleInputChange(event)} onKeyPress={(event) => this._handleKeyPress(event)} />
     								</div>
  								</div>
 								 <Button bsStyle="success" bsSize="large" onClick={this.handleSubmit}>Search</Button>
