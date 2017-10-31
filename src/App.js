@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Button, DropdownButton, Form, FormControl, MenuItem } from 'react-bootstrap';
 import autoBind from 'react-autobind';
+import _isUndefined from 'lodash/fp/isUndefined';
+import _map from 'lodash/map';
+
+/*
+// Needed for Redux - try to implement later
+import { connect, Provider } from 'react-redux';
+import { createStore } from 'redux';
+*/
+
 import logo from './images/logos/thomas_logo.png';
 import gradeA from './images/letters/a.png';
 import gradeB from './images/letters/b.png';
