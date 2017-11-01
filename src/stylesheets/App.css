@@ -97,6 +97,11 @@
   bottom: 5px;
   font-size: 0.8em; }
 
+.Inspection-grade-date .Inspection-date {
+  position: relative;
+  display: inline;
+  font-size: 1em; }
+
 .Inspection-date::after {
   content: attr(data-month) " ∙" attr(data-date) " ∙" attr(data-year); }
 

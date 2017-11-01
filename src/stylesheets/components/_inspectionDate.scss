@@ -6,6 +6,12 @@
 	font-size: 0.8em;
 }
 
+.Inspection-grade-date .Inspection-date{
+	position: relative;
+	display: inline;
+	font-size: 1em;
+}
+
 .Inspection-date::after {
 	content: attr(data-month) ' \2219 ' attr(data-date) ' \2219 ' attr(data-year);
 }
