@@ -214,7 +214,9 @@ export default class SearchForm extends Component {
 				});
 
 				_this.setState({ searchType: data[0].cuisine });
-				_this.setState({ searchResults: _this.wrapRestuarants(restaurants) });
+				_this.setState({ searchResults: _this.wrapRestuarants(restaurants) }, function() {
+					document.getElementsByTagName('body')[0].classList.remove('start');
+				});
 				_this.setState({ searchBackground: 'url(' + data[data.length-1].imageUrl + ') no-repeat' });
 				_this.setState({ gradesBackground: null });
 			}

@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+var body = document.getElementsByTagName('body')[0];
+
 if (
-    typeof window.orientation !== 'undefined' ||
-    navigator.userAgent.match(
-        /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i
-    )
+	typeof window.orientation !== 'undefined' ||
+	navigator.userAgent.match(
+		/Android|BlackBerry|iPhone|iPod|Opera Mini|IEMobile/i
+	)
 ) {
-    document.getElementsByTagName('body')[0].classList.add('mobile');
+	body.classList.add('mobile');
+} else {
+	body.classList.add('start');
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
