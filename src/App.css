@@ -42,6 +42,10 @@
   max-width: 60px;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 .tile_gradeLetter {
   background-image: attr(data-image);
   background-color: #ffffff;
@@ -100,12 +104,13 @@
   display: none;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
   width: 85%;
-  height: auto;
+  height: 100%;
   max-height: 85%;
   background: #ffffff;
   box-shadow: 0px 0px 1000000px 200px #555555;
+  z-index: 2;
 }
 
 .Restaurant-modal.show {
@@ -120,7 +125,7 @@
 
 .Restaurant-modal .Restaurant-details {
   display: flex;
-  height: 100%;
+  height: inherit;
 }
 
 .Restaurant-modal .Restaurant-details .close {
@@ -151,6 +156,8 @@
 
 .Restaurant-modal .Restaurant-moreinfo {
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .Restaurant-modal .Restaurant-moreinfo .Restaurant-info {
@@ -183,7 +190,13 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  text-align: left;
   padding: 0px 20px 20px 20px;
+}
+
+.Inspection-violation span {
+  display: block;
+  padding-left: 20px;
 }
 
 .Restaurant-info {
@@ -207,6 +220,7 @@
 .Search-form {
   background-size: cover !important;
   padding: 15px 5%;
+  z-index: 1;
 }
 
 .Search-form .search-type {
@@ -267,6 +281,21 @@
 .Search-results .jumbotron {
   background: none;
   padding: 15px 5%;
+  z-index: 1;
+}
+
+.Filters {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 15px;
+}
+
+.Filters select {
+  background-color: rgb(69,176,230);
+  color: white;
+  font-size: 1.5rem;
+  outline: none;
+  border: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -304,6 +333,10 @@
 
   .Restaurant-photo {
     height: 175px;
+  }
+
+  .Filters select:last-child {
+    margin-left: 10px;
   }
 }
 
