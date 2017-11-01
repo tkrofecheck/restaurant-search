@@ -139,6 +139,7 @@ class RestaurantMoreInfo extends Component {
 		var inspection = data.inspections[0];
 		var grade = inspection.grade === null ? 'Pending' : inspection.grade;
 
+		// Styles needed for inspection grade inside modal
 		var gradeStyle = {
 			display: 'flex',
 			alignSelf: 'center',
@@ -170,15 +171,16 @@ class RestaurantMoreInfo extends Component {
 							</div>
 						</div>
 						<div className="Restaurant-inspection">
-							<Grade inspection={inspection} gradeStyle={gradeStyle} containerStyle={containerStyle} showDate="false"/>
+							<Grade inspection={inspection} gradeStyle={gradeStyle} containerStyle={containerStyle} className="mod_gradeLetter" showDate="false"/>
 						</div>
 					</div>
 				</div>
 				<div className="Restaurant-inspection-info">
 					<div className="Inspection-heading">Inspections</div>
+					<div className="Inspection-grade bold">{grade}</div>
 					<div className="Inspection-violation">
 						<div className="Inspection-action">{inspection.action}</div>
-						<span>{inspection.violation_code}</span>
+						<span>Violation code: {inspection.violation_code}</span>
 						<span>{inspection.violation_desc}</span>
 					</div>
 					<div className="Inspection-score">Score: {inspection.score}</div>
@@ -265,10 +267,36 @@ class SearchForm extends Component {
 		});
 	}
 
-	wrapRestuarants(restaurants) {
+	wrapRestuarants(restaurants) {		
 		return (
 			<div>
-				<div className="row">{restaurants}</div>
+				<Form inline>
+					<div className="row Filters">
+						<div className="col-lg-12">
+							<div className="input-group">
+								<div className="input-group-btn">
+									<FormControl componentClass="select" placeholder="all" bsStyle="info" bsSize="small" name="grade">
+										<option value="all">Grade</option>
+										<option value="a">Grade A</option>
+										<option value="b">Grade B</option>
+										<option value="c">Grade C</option>
+										<option value="gp">Grade Pending</option>
+									</FormControl>
+									<FormControl componentClass="select" placeholder="all" bsStyle="info" bsSize="small" name="price">
+										<option value="all">Price</option>
+										<option value="1">$</option>
+										<option value="2">$$</option>
+										<option value="3">$$$</option>
+										<option value="4">$$$$</option>
+									</FormControl>
+								</div>
+							</div>
+						</div>
+					</div>
+				</Form>
+				<div className="row">
+					{restaurants}
+				</div>
 			</div>
 		);
 	}
