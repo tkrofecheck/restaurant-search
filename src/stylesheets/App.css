@@ -290,3 +290,29 @@
     font-size: 2em; }
   .Filters select:last-child {
     margin-left: 10px; } }
+
+@media screen and (min-width: 768px) {
+  body:not(.mobile) #root {
+    height: 100vh; }
+  body:not(.mobile) .App {
+    display: flex;
+    flex-direction: column;
+    height: 100%; }
+  body:not(.mobile) .App-header, body:not(.mobile) .App-footer {
+    display: flex;
+    flex: 1;
+    flex-direction: row; }
+  body:not(.mobile) .Restaurant-search {
+    display: flex;
+    flex-direction: column;
+    flex-grow: inherit;
+    flex: 9; }
+  body:not(.mobile) .Search-results {
+    height: 100%; }
+    body:not(.mobile) .Search-results .jumbotron {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%; }
+    body:not(.mobile) .Search-results .Letter-grades {
+      width: 100%; } }
