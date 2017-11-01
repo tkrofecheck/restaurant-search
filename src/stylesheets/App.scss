@@ -1,0 +1,63 @@
+.App {
+	min-width: 320px;
+	text-align: center;
+}
+
+.App-logo {
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
+}
+
+.App-header,
+.App-footer {
+	background-color: rgb(14, 53, 78);
+	padding: 15px 5%;
+	text-align: left;
+	color: white;
+}
+
+.App-header img,
+.App-footer img {
+	height: 30px;
+}
+
+.bold {
+	font-weight: 600;
+}
+
+.btn-success {
+	border-radius: 5px !important; /* Bootstrap override */
+}
+
+.input-group .form-control {
+	border-radius: 0;
+}
+
+.input-group .btn-group {
+	display: block;
+}
+
+.input-group input[type='text'] {
+	z-index: 1;
+}
+
+.jumbotron {
+	margin-bottom: 0;
+}
+
+.pad-20 {
+	padding: 20px;
+}
+
+@media screen and (min-width: 768px) {
+	.App-header img,
+	.App-footer img {
+		height: 50px;
+	}
+
+	.btn-success {
+		margin-left: 10px;
+	}
+}
+
+@import 'components/all';

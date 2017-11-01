@@ -1,0 +1,17 @@
+/* styles for restaurant photo */
+
+.Restaurant-photo {
+	height: 125px;
+}
+
+@media screen and (min-width: 768px) {
+	.Restaurant-photo {
+		height: 175px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.Restaurant-photo {
+		height: 200px;
+	}
+}

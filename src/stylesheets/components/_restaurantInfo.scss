@@ -1,0 +1,28 @@
+/* styles for restaurant info (appears in modal) - need to refactor to reusable between page and modal */
+
+.Restaurant-info {
+	margin-bottom: 25px;
+	outline: 1px solid #ababab;
+	outline-offset: -1px;
+	padding: 10px;
+	text-align: left;
+}
+
+.Restaurant-inspection-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	text-align: left;
+	padding: 0px 20px 20px 20px;
+}
+
+.Restaurant-name {
+	color: rgb(14, 53, 78);
+	font-weight: 600;
+}
+
+.Inspection-violation span {
+	display: block;
+	padding-left: 20px;
+}
