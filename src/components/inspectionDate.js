@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
+import formatDate from '../utils/formatDate';
 
 export default class InspectionDate extends Component {
 	render() {
 		if (this.props.display === 'true') {
-			var inspectionDate = new Date(this.props.date);
-			var date = inspectionDate.getDate();
-			var month = inspectionDate.getMonth() + 1;
-			var year = inspectionDate.getFullYear();
-			
-			function addZero(num) {
-				return (num < 10) ? '0' + num : num
-			}
-
-			date = addZero(date);
-			month = addZero(month);
+			var iDate = formatDate(this.props.date);
 
 			return (
-				<div className="Inspection-date" data-month={month} data-date={date} data-year={year}></div>
+				<div className="Inspection-date" data-month={iDate.month} data-date={iDate.date} data-year={iDate.year}></div>
 			);
 		} else {
 			return null;
