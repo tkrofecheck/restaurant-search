@@ -11,24 +11,51 @@ export default class Grade extends Component {
 	render() {
 		var inspection = this.props.inspection;
 		var value = !_isUndefined(inspection) ? inspection.grade : this.props.value;
+		var imageAttributes = {
+			alt: null,
+			className: null,
+			src: null,
+			style: null
+		};
 		var grade;
 		var date;
 
 		switch (value) {
 			case 'A':
-				grade = <Image src={gradeA} alt="Grade A" style={this.props.gradeStyle} />;
+				imageAttributes = {
+					src: gradeA,
+					alt: 'Grade A',
+					style: this.props.gradeStyle
+				};
+				grade = <Image attr={imageAttributes} />;
 				break;
 
 			case 'B':
-				grade = <Image src={gradeB} alt="Grade B" style={this.props.gradeStyle} />;
+				imageAttributes = {
+					src: gradeB,
+					alt: 'Grade B',
+					style: this.props.gradeStyle
+				};
+				grade = <Image attr={imageAttributes} />;
 				break;
 
 			case 'C':
-				grade = <Image src={gradeC} alt="Grade C" style={this.props.gradeStyle} />;
+				imageAttributes = {
+					src: gradeC,
+					alt: 'Grade C',
+					style: this.props.gradeStyle
+				};
+				grade = <Image attr={imageAttributes} />;
 				break;
 
 			default:
-				grade = <Image src={gradeGP} alt="Grade Pending" style={this.props.gradeStyle} />;
+				imageAttributes = {
+					src: gradeGP,
+					alt: 'Grade Pending',
+					className: null,
+					style: this.props.gradeStyle
+				};
+				grade = <Image attr={imageAttributes} />;
 				break;
 		}
 
