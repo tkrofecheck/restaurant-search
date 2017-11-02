@@ -23,7 +23,10 @@
 
 .App-header img,
 .App-footer img {
-  height: 40px; }
+  position: relative;
+  height: 40px;
+  left: -5px;
+  /* logo png has padding - account for this for alignment */ }
 
 .Restaurant-search {
   display: flex;
