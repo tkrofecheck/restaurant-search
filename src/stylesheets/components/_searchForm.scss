@@ -70,6 +70,14 @@ $background_color_3: rgb(69, 176, 230);
 			padding: 20px 0;
 		}
 	}
+
+	&.jumbotron {
+		background: rgb(135,224,253); /* Old browsers */
+		background: -moz-linear-gradient(left, rgba(135,224,253,1) 0%, rgba(14,53,78,1) 0%, rgba(19,67,98,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(135,224,253,1) 0%,rgba(14,53,78,1) 0%,rgba(19,67,98,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(135,224,253,1) 0%,rgba(14,53,78,1) 0%,rgba(19,67,98,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#134362',GradientType=1 );
+	}
 }
 
 .Search-form[data-type='search'] {
@@ -87,7 +95,13 @@ $background_color_3: rgb(69, 176, 230);
 }
 
 .Search-results {
+	height: 100%;
+	
 	.jumbotron {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
 		background: none;
 		padding: 15px 5%;
 		z-index: 1;

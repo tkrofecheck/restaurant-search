@@ -1,5 +1,7 @@
-@charset "UTF-8";
 .App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   min-width: 320px;
   text-align: center; }
 
@@ -9,14 +11,27 @@
 
 .App-header,
 .App-footer {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
   background-color: #0e354e;
-  padding: 15px 5%;
+  padding: 15px 6.5%;
   text-align: left;
-  color: white; }
+  color: white;
+  z-index: 10; }
 
 .App-header img,
 .App-footer img {
-  height: 30px; }
+  height: 40px; }
+
+.Restaurant-search {
+  display: flex;
+  flex-direction: column;
+  flex-grow: inherit;
+  flex: 9;
+  overflow-y: auto;
+  overflow-x: hidden; }
 
 .bold {
   font-weight: 600; }
@@ -55,9 +70,48 @@
   content: ','; }
 
 /* styles for inspection grade */
+.Letter-grades {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; }
+
+.gradeLetterContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 25%; }
+
+.seal {
+  position: relative;
+  float: left;
+  /* allows image to sit behind grade letter */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 0; }
+  .seal img {
+    width: 75%;
+    opacity: .5;
+    z-index: 1; }
+
+.gradeImage {
+  position: absolute;
+  opacity: 1; }
+  .gradeImage img {
+    width: 25%; }
+
 .def_gradeLetter {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
   height: 60px;
-  max-width: 60px; }
+  width: 60px; }
 
 .tile_gradeLetter {
   background-image: attr(data-image);
@@ -74,6 +128,14 @@
   right: 30px;
   top: 25%;
   box-shadow: 0px 2px 2px #ababab; }
+  .tile_gradeLetter .gradeImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 75%; }
+    .tile_gradeLetter .gradeImage img {
+      width: 60%; }
 
 /* Bootstrap overrides */
 .Letter-grades .col-sm-6 {
@@ -82,34 +144,50 @@
 .Letter-grades.row {
   margin: 0; }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 667px) {
   .def_gradeLetter {
-    height: 100px;
-    max-width: 100px; }
+    height: 75px;
+    width: 75px; } }
+
+@media screen and (min-width: 768px) {
+  .gradeImage img {
+    width: 50%; }
+  .def_gradeLetter {
+    height: 150px;
+    width: 150px; }
   .tile_gradeLetter {
     width: 100px;
     height: 100px;
     top: 32%; } }
 
 @media screen and (min-width: 1024px) {
+  .gradeImage img {
+    width: 75%; }
   .def_gradeLetter {
     height: 200px;
-    max-width: 200px; } }
+    width: 200px; } }
+
+@media screen and (min-width: 1240px) {
+  .gradeImage img {
+    width: 100%; }
+  .Letter-grades {
+    flex-wrap: wrap; }
+  .def_gradeLetter {
+    width: 250px;
+    height: 250px; } }
+
+@media screen and (min-width: 1440px) {
+  .def_gradeLetter {
+    width: 300px;
+    height: 300px; } }
 
 /* styles for images - use classname set on image component */
 /* styles for inspection date */
-.Inspection-date {
-  position: absolute;
-  bottom: 5px;
-  font-size: 0.8em; }
-
-.Inspection-grade-date .Inspection-date {
-  position: relative;
-  display: inline;
-  font-size: 1em; }
-
-.Inspection-date::after {
-  content: attr(data-month) " ∙" attr(data-date) " ∙" attr(data-year); }
+.date {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
 
 /* styles for restaurant popup modal (consider making this more generic to allow reuse outside restaurant genre) */
 .Restaurant-modal {
@@ -271,6 +349,16 @@
     display: flex;
     flex-direction: column;
     padding: 20px 0; }
+  .Search-form.jumbotron {
+    background: #87e0fd;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #87e0fd 0%, #0e354e 0%, #134362 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #87e0fd 0%, #0e354e 0%, #134362 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #87e0fd 0%, #0e354e 0%, #134362 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#134362',GradientType=1 ); }
 
 .Search-form[data-type='search'] .title {
   display: inline-table; }
@@ -281,10 +369,16 @@
 .Search-form[data-type='search'] .search-type {
   display: none; }
 
-.Search-results .jumbotron {
-  background: none;
-  padding: 15px 5%;
-  z-index: 1; }
+.Search-results {
+  height: 100%; }
+  .Search-results .jumbotron {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: none;
+    padding: 15px 5%;
+    z-index: 1; }
 
 .Filters {
   display: flex;
@@ -306,29 +400,3 @@
     font-size: 2em; }
   .Filters select:last-child {
     margin-left: 10px; } }
-
-@media screen and (min-width: 768px) {
-  body:not(.mobile).start #root {
-    height: 100vh; }
-    body:not(.mobile).start #root .App {
-      display: flex;
-      flex-direction: column;
-      height: 100%; }
-    body:not(.mobile).start #root .App-header, body:not(.mobile).start #root .App-footer {
-      display: flex;
-      flex: 1;
-      flex-direction: row; }
-    body:not(.mobile).start #root .Restaurant-search {
-      display: flex;
-      flex-direction: column;
-      flex-grow: inherit;
-      flex: 9; }
-    body:not(.mobile).start #root .Search-results {
-      height: 100%; }
-      body:not(.mobile).start #root .Search-results .jumbotron {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%; }
-      body:not(.mobile).start #root .Search-results .Letter-grades {
-        width: 100%; } }
