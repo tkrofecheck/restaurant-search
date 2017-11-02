@@ -378,11 +378,16 @@ img {
   .Search-results .jumbotron {
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100%;
     background: none;
     padding: 15px 5%;
     z-index: 1; }
+
+.Restaurant-search[view='home'] .Search-results .jumbotron {
+  align-items: center; }
+
+.Restaurant-search[view='results'] .Search-results .jumbotron {
+  align-items: flex-start; }
 
 .Filters {
   display: flex;

@@ -46,7 +46,8 @@ export default class SearchForm extends Component {
 			modalClass: 'Restaurant-modal hidden',
 			restaurantContent: ( 
 				<div></div>
-			)
+			),
+			view: 'home'
 		};
 
 		autoBind(this);
@@ -182,6 +183,7 @@ export default class SearchForm extends Component {
 					);
 				});
 
+				_this.setState({ view : 'results' });
 				_this.setState({ searchType: data[0].cuisine });
 				_this.setState({ searchResults: _this.wrapRestuarants(restaurants) });
 				_this.setState({ searchBackground: 'url(' + data[data.length-1].imageUrl + ') no-repeat' });
@@ -198,7 +200,7 @@ export default class SearchForm extends Component {
 		};
 		
 		return (
-			<div className="Restaurant-search">
+			<div className="Restaurant-search" view={this.state.view}>
 				<div className="jumbotron Search-form" style={searchFormStyle} data-type={this.state.searchType}>
 					<div className="title">NYC Restaurants</div>
 					<Form inline>
