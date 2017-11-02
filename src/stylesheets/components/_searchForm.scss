@@ -95,12 +95,17 @@ $background_color_3: rgb(69, 176, 230);
 }
 
 .Search-results {
+	display: flex;
+    justify-content: center;
+	align-items: center;
 	height: 100%;
+    width: 100%;
 	
 	.jumbotron {
 		display: flex;
 		justify-content: center;
 		height: 100%;
+		width: 100%;
 		background: none;
 		padding: 15px 5%;
 		z-index: 1;
