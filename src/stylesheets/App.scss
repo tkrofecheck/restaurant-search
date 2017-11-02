@@ -38,6 +38,10 @@
 	overflow-x: hidden;
 }
 
+img {
+	image-rendering: crisp-edges; /* not fully supported yet - but maybe one day! */
+}
+
 .bold {
 	font-weight: 600;
 }

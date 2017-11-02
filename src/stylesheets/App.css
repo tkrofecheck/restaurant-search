@@ -33,6 +33,10 @@
   overflow-y: auto;
   overflow-x: hidden; }
 
+img {
+  image-rendering: crisp-edges;
+  /* not fully supported yet - but maybe one day! */ }
+
 .bold {
   font-weight: 600; }
 
@@ -101,6 +105,8 @@
 .gradeImage {
   position: absolute;
   opacity: 1; }
+  .gradeImage img {
+    width: 40%; }
 
 .def_gradeLetter {
   position: relative;
@@ -110,8 +116,6 @@
   background-color: #ffffff;
   height: 60px;
   width: 60px; }
-  .def_gradeLetter .gradeImage img {
-    width: 40%; }
 
 .tile_gradeLetter {
   background-image: attr(data-image);
