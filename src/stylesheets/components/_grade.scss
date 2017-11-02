@@ -34,10 +34,6 @@
 .gradeImage {
 	position: absolute;
 	opacity: 1;
-
-	img {
-		width: 25%;
-	}
 }
 
 .def_gradeLetter {
@@ -49,6 +45,12 @@
 	background-color: #ffffff;
 	height: 60px;
 	width: 60px;
+
+	.gradeImage {
+		img {
+			width: 40%;
+		}
+	}
 }
 
 .tile_gradeLetter {

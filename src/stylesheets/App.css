@@ -101,8 +101,6 @@
 .gradeImage {
   position: absolute;
   opacity: 1; }
-  .gradeImage img {
-    width: 25%; }
 
 .def_gradeLetter {
   position: relative;
@@ -112,6 +110,8 @@
   background-color: #ffffff;
   height: 60px;
   width: 60px; }
+  .def_gradeLetter .gradeImage img {
+    width: 40%; }
 
 .tile_gradeLetter {
   background-image: attr(data-image);
