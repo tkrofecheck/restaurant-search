@@ -1,1 +1,20 @@
 /* styles for restaurant address */
+.address {
+    span {
+        margin-right: 5px;
+    }
+    
+    .number {}
+
+    .street {}
+
+    .city {
+        &::after {
+            content: ',';
+        }
+    }
+
+    .state {}
+
+    .zipcode {}
+}

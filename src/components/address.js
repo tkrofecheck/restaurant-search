@@ -11,7 +11,11 @@ export default class Address extends Component {
 		return (
 			<div>
 				<div className="address">
-					{this.props.building}&nbsp;{this.props.street},&nbsp;{this.props.boro},&nbsp;NY&nbsp;{this.props.zipcode}
+					<span className="number">{this.props.building}</span>
+					<span className="street">{this.props.street}</span>
+					<span className="city">{this.props.boro}</span>
+					<span className="state">NY</span>
+					<span className="zipcode">{this.props.zipcode}</span>
 				</div>
 				<Phone number={this.props.phone} />
 			</div>

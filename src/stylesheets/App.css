@@ -48,6 +48,12 @@
     margin-left: 10px; } }
 
 /* styles for restaurant address */
+.address span {
+  margin-right: 5px; }
+
+.address .city::after {
+  content: ','; }
+
 /* styles for inspection grade */
 .def_gradeLetter {
   height: 60px;
@@ -182,6 +188,9 @@
 
 /* styles for phone number */
 /* styles for restaurant info (appears in modal) - need to refactor to reusable between page and modal */
+.Restaurant-address .street::after {
+  content: ','; }
+
 .Restaurant-info {
   margin-bottom: 25px;
   outline: 1px solid #ababab;
@@ -287,6 +296,8 @@
     font-size: 1.5rem;
     outline: none;
     border: 0; }
+  .Filters .col-lg-12 {
+    width: auto; }
 
 @media screen and (min-width: 768px) {
   .Search-form .search-label span {

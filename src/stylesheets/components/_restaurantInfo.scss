@@ -1,5 +1,11 @@
 /* styles for restaurant info (appears in modal) - need to refactor to reusable between page and modal */
 
+.Restaurant-address {
+	.street::after {
+		content: ',';
+	}
+}
+
 .Restaurant-info {
 	margin-bottom: 25px;
 	outline: 1px solid #ababab;
