@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import RestaurantPhoto from './restaurantPhoto';
-import InspectionDate from './inspectionDate';
+import MyDate from './myDate';
 import Grade from './grade';
 import Address from './address';
 import blueSeal from '../images/seals/Nyc-seal-blue.png';
@@ -55,7 +55,7 @@ export default class RestaurantMoreInfo extends Component {
 				</div>
 				<div className="Restaurant-inspection-info">
 					<div className="Inspection-heading">Inspections</div>
-					<div className="Inspection-grade-date bold"><InspectionDate date={inspection.grade_date} display="true"/></div>
+					<div className="Inspection-grade-date bold"><MyDate date={inspection.grade_date}/></div>
 					<div className="Inspection-violation">
 						<div className="Inspection-action">{inspection.action}</div>
 						<span>Violation code: {inspection.violation_code}</span>
@@ -63,7 +63,7 @@ export default class RestaurantMoreInfo extends Component {
 					</div>
 					<div className="Inspection-score">Score: {inspection.score}</div>
 					<div className="Inspection-grade">Grade: {grade}</div>
-					<div className="Inspection-grade-date">Grade Date: <InspectionDate date={inspection.grade_date} display="true"/></div>
+					<div className="Inspection-grade-date">Grade Date: <MyDate date={inspection.grade_date}/></div>
 					<div className="Inspection-type">{inspection.inspection_type}</div>
 				</div>
 			</div>

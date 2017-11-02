@@ -17,35 +17,16 @@ export default class SearchForm extends Component {
 	constructor(props) {
 		super(props);
 
-		var gradeStyle = {
-			display: 'flex',
-			alignSelf: 'center',
-			justifySelf: 'center',
-			width: '30%'
-		};
-
 		var gradesBackground = {
 			backgroundImage: 'url(' + gradeBgStart + ')',
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: 'cover'
 		};
 
-		var containerStyle = {
-			backgroundColor: '#ffffff',
-			backgroundImage: 'url(' + blueSeal + ')',
-			backgroundPosition: 'center center',
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: '60%',
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			margin: '0 auto'
-		};
-
 		let initialStateResults = _map(gradeLetters, function(letter, index) {
 			return (
-				<div key={index} className="col-sm-6 col-md-3">
-					<Grade value={letter} gradeStyle={gradeStyle} containerStyle={containerStyle} className="def_gradeLetter" showDate="false" />
+				<div className="gradeLetterContainer" key={index}>
+					<Grade value={letter} seal={blueSeal} className="def_gradeLetter" showDate="false" />
 				</div>
 			);
 		});
@@ -53,12 +34,12 @@ export default class SearchForm extends Component {
 		this.state = {
 			gradesBackground: gradesBackground,
 			searchType: 'search',
-			searchBackground: 'rgb(17,61,89)',
+			searchBackground: null,
 			searchFilter: 'all',
 			searchPage: '1',
 			searchQuery: '',
 			searchResults: (
-				<div className="row Letter-grades">
+				<div className="Letter-grades">
 					{initialStateResults}
 				</div>
 			),
@@ -182,25 +163,13 @@ export default class SearchForm extends Component {
 			if (this.readyState === 4) {
 				var data = JSON.parse(this.responseText);
 				//console.log('restaurants', data);
-				var gradeStyle;
-		
-				var containerStyle = {
-					backgroundImage: 'url(' + greySeal + ')'
-				};
 
 				let restaurants = data.map(function(restaurant, index) {
-					gradeStyle = {
-						position: 'relative',
-						display: 'block',
-						width: (restaurant.inspections[0].grade === 'B') ? '44%' : '50%',
-						top: (restaurant.inspections[0].grade === 'A' || restaurant.inspections[0].grade === 'B' || restaurant.inspections[0].grade === 'C') ? '10%' : '20%'
-					};
-
 					return (
 						<div key={index} className="col-sm-4" onClick={(event) => _this.showRestaurantDetails(event, restaurant, true)}>
 							<RestaurantPhoto url={restaurant.imageUrl} />
 							<div className="Restaurant-inspection">
-								<Grade className="tile_gradeLetter" inspection={restaurant.inspections[0]} gradeStyle={gradeStyle} containerStyle={containerStyle} showDate="true" />
+								<Grade className="tile_gradeLetter" value={restaurant.inspections[0].grade} inspectionDate={restaurant.inspections[0].grade_date} seal={greySeal} />
 							</div>
 							<div className="Restaurant-info">
 								<div className="Restaurant-name">{restaurant.name}</div>

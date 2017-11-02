@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Image from './image';
-import InspectionDate from './inspectionDate';
+import MyDate from './myDate';
 import _isUndefined from 'lodash/fp/isUndefined';
 import gradeA from '../images/letters/a.png';
 import gradeB from '../images/letters/b.png';
@@ -9,23 +9,27 @@ import gradeGP from '../images/letters/GP.png';
 
 export default class Grade extends Component {
 	render() {
-		var inspection = this.props.inspection;
-		var value = !_isUndefined(inspection) ? inspection.grade : this.props.value;
 		var imageAttributes = {
 			alt: null,
 			className: null,
 			src: null,
 			style: null
 		};
+		var sealAttributes = {
+			alt: 'NYC Seal',
+			className: null,
+			src: this.props.seal,
+			style: null
+		};
+
 		var grade;
 		var date;
 
-		switch (value) {
+		switch (this.props.value) {
 			case 'A':
 				imageAttributes = {
 					src: gradeA,
-					alt: 'Grade A',
-					style: this.props.gradeStyle
+					alt: 'Grade A'
 				};
 				grade = <Image attr={imageAttributes} />;
 				break;
@@ -33,8 +37,7 @@ export default class Grade extends Component {
 			case 'B':
 				imageAttributes = {
 					src: gradeB,
-					alt: 'Grade B',
-					style: this.props.gradeStyle
+					alt: 'Grade B'
 				};
 				grade = <Image attr={imageAttributes} />;
 				break;
@@ -42,8 +45,7 @@ export default class Grade extends Component {
 			case 'C':
 				imageAttributes = {
 					src: gradeC,
-					alt: 'Grade C',
-					style: this.props.gradeStyle
+					alt: 'Grade C'
 				};
 				grade = <Image attr={imageAttributes} />;
 				break;
@@ -51,21 +53,20 @@ export default class Grade extends Component {
 			default:
 				imageAttributes = {
 					src: gradeGP,
-					alt: 'Grade Pending',
-					className: null,
-					style: this.props.gradeStyle
+					alt: 'Grade Pending'
 				};
 				grade = <Image attr={imageAttributes} />;
 				break;
 		}
 
-		if (!_isUndefined(inspection)) {
-			date = <InspectionDate date={inspection.date} display={this.props.showDate} />;
+		if (!_isUndefined(this.props.inspectionDate) && this.props.inspectionDate !== null) {
+			date = <MyDate date={this.props.inspectionDate} />;
 		}
 
 		return (
-			<div className={this.props.className} style={this.props.containerStyle}>
-				{grade}
+			<div className={this.props.className}>
+				<div className="seal"><Image attr={sealAttributes} /></div>
+				<div className="gradeImage">{grade}</div>
 				{date}
 			</div>
 		);
