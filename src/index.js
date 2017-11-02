@@ -13,8 +13,6 @@ if (
 	)
 ) {
 	body.classList.add('mobile');
-} else {
-	body.classList.add('start');
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
