@@ -31,6 +31,7 @@ export default class Restaurants extends Component {
 			modalClass: 'Restaurant-modal hidden',
 			modalContent: <div />,
 			restaurants: <div className="Letter-grades">{noRestaurants}</div>,
+			responseData: false,
 			showinfo: false
 		};
 
@@ -58,7 +59,8 @@ export default class Restaurants extends Component {
 
 			if (this.state.restaurants !== restaurants) {
 				this.setState({
-					restaurants: restaurants
+					restaurants: restaurants,
+					responseData: true
 				});
 			}
 		}
@@ -89,7 +91,7 @@ export default class Restaurants extends Component {
 
 	render() {
 		return (
-			<div data-response={this.props.responseData}>
+			<div data-response={this.state.responseData}>
 				<Form inline>
 					<div className="row Filters">
 						<div className="col-lg-12">
@@ -128,7 +130,7 @@ export default class Restaurants extends Component {
 						</div>
 					</div>
 				</Form>
-				<div className="row">{this.state.restaurants}</div>
+				<div>{this.state.restaurants}</div>
 				{/* <Modal
 					content={this.state.modalContent}
 					modalClass={this.state.modalClass}

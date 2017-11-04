@@ -417,6 +417,9 @@ img {
     padding: 15px 5%;
     z-index: 1; }
 
+.Restaurant-search[view='home'] .Search-results form {
+  display: none; }
+
 .Restaurant-search[view='home'] .Search-results .jumbotron {
   align-items: center; }
 
