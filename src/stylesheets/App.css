@@ -196,6 +196,9 @@ img {
   align-items: center; }
 
 /* styles for restaurant popup modal (consider making this more generic to allow reuse outside restaurant genre) */
+.modal {
+  display: block !important; }
+
 .Restaurant-modal {
   position: fixed;
   display: none;
