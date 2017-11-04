@@ -194,6 +194,8 @@ img {
   flex-direction: row;
   justify-content: center;
   align-items: center; }
+  .date .month::after, .date .date-date::after {
+    content: '\2219'; }
 
 /* styles for restaurant popup modal (consider making this more generic to allow reuse outside restaurant genre) */
 .modal {
