@@ -65,8 +65,6 @@ export default class Restaurants extends Component {
 	}
 
 	showModal(event, content) {
-		event.stopPropagation();
-
 		var modalContent;
 
 		if (content !== null) {
@@ -84,8 +82,6 @@ export default class Restaurants extends Component {
 	}
 
 	closeModal(event) {
-		event.stopPropagation();
-
 		this.setState({
 			showinfo: false
 		});
