@@ -12,6 +12,11 @@ export default class Restaurant extends Component {
 		autoBind(this);
 	}
 
+    handleClick(event) {
+        event.stopPropagation();
+        this.props.onclick(event, this.props.data);
+    }
+
 	render() {
         var restaurant = this.props.data;
         
@@ -19,7 +24,7 @@ export default class Restaurant extends Component {
 			<div
 				key={this.props.index}
 				className="col-sm-4"
-				onClick={this.props.onclick}
+				onClick={(event) => this.handleClick(event)}
 			>
 				<RestaurantPhoto url={restaurant.imageUrl} />
 				<div className="Restaurant-inspection">

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { Form, FormControl } from 'react-bootstrap';
+import Modal from 'react-bootstrap-modal';
 import _map from 'lodash/map';
 import Grade from './grade';
-import Modal from './modal';
+//import Modal from './modal';
 import Restaurant from './restaurant';
 import RestaurantMoreInfo from './restaurantInfo';
 import blueSeal from '../images/seals/Nyc-seal-blue.png';
@@ -28,64 +29,69 @@ export default class Restaurants extends Component {
 
 		this.state = {
 			modalClass: 'Restaurant-modal hidden',
-			modalContent: <div />
+			modalContent: <div />,
+			restaurants: <div className="Letter-grades">{noRestaurants}</div>,
+			showinfo: false
 		};
 
 		autoBind(this);
 	}
 
-	showModal(event, content, display) {
+	componentWillReceiveProps(nextProps) {
+		var _this = this;
+		var restaurants;
+
+		if (
+			typeof nextProps.data !== 'undefined' &&
+			nextProps.data.length > 0
+		) {
+			restaurants = _map(this.props.data, function(restaurant, index) {
+				return (
+					<Restaurant
+						key={index}
+						data={restaurant}
+						index={index}
+						onclick={event => _this.showModal(event, restaurant)}
+					/>
+				);
+			});
+
+			if (this.state.restaurants !== restaurants) {
+				this.setState({
+					restaurants: restaurants
+				});
+			}
+		}
+	}
+
+	showModal(event, content) {
 		event.stopPropagation();
 
-		var modalClass = 'Restaurant-modal show';
-		var modalContent = <div></div>;
-		
+		var modalContent;
+
 		if (content !== null) {
-			modalContent =
+			modalContent = (
 				<div className="Restaurant-details">
-					<div
-						className="close"
-						onClick={event =>
-							this.showModal(event, null, false)}
-					>
-						Close
-					</div>
 					<RestaurantMoreInfo data={content} />
-				</div>;
+				</div>
+			);
+
+			this.setState({
+				modalContent: modalContent,
+				showinfo: true
+			});
 		}
+	}
+
+	closeModal(event) {
+		event.stopPropagation();
 
 		this.setState({
-			modalContent: modalContent
+			showinfo: false
 		});
-		
-		if (display) {
-            setTimeout(
-                function() {
-                    modalClass = 'Restaurant-modal show visible';
-                    this.setState({ modalClass: modalClass });
-                }.bind(this)
-            , 10);
-		} else {
-            setTimeout(
-                function() {
-                    modalClass = 'Restaurant-modal';
-                    this.setState({ modalClass: modalClass });
-                }.bind(this)
-            , 510); // Keep timeout slightly higher than transition time of 500ms
-		};
 	}
 
 	render() {
-		var _this = this;
-		var restaurants = <div className="Letter-grades">{noRestaurants}</div>;
-
-		console.log('this.props.data', this.props.data);
-		if (typeof this.props.data !== 'undefined' && this.props.data.length > 0) {
-			restaurants = _map(this.props.data, function(restaurant, index) {
-				return <Restaurant data={restaurant} index={index} onclick={(event) => _this.showModal(event, restaurant)}/>;
-			});
-		}
-
 		return (
 			<div data-response={this.props.responseData}>
 				<Form inline>
@@ -126,11 +132,36 @@ export default class Restaurants extends Component {
 						</div>
 					</div>
 				</Form>
-				<div className="row">{restaurants}</div>
-				<Modal
+				<div className="row">{this.state.restaurants}</div>
+				{/* <Modal
 					content={this.state.modalContent}
 					modalClass={this.state.modalClass}
-				/>
+				/> */}
+				<Modal
+					show={this.state.showinfo}
+					onHide={event => this.closeModal(event)}
+					aria-labelledby="ModalHeader"
+				>
+					{/* <Modal.Header closeButton>
+						<Modal.Title id="ModalHeader">
+							A Title Goes here
+						</Modal.Title>
+					</Modal.Header> */}
+					<Modal.Body>
+						<div
+							className="close"
+							onClick={event => this.closeModal(event)}
+						>
+							Close
+						</div>
+						{this.state.modalContent}
+					</Modal.Body>
+					{/* <Modal.Footer>
+						<Modal.Dismiss className="btn btn-default">
+							Cancel
+						</Modal.Dismiss>
+					</Modal.Footer> */}
+				</Modal>
 			</div>
 		);
 	}

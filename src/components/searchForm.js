@@ -6,6 +6,10 @@ import gradeBgStart from '../images/restaurants/image_7.jpg';
 
 /* Installed globally */
 const request = require('superagent');
+const api = {
+	url: 'https://restaurant-service.tpco.info/restaurants',
+	key: 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb'
+};
 
 export default class SearchForm extends Component {
 	constructor(props) {
@@ -62,9 +66,9 @@ export default class SearchForm extends Component {
 		var _this = this;
 
 		request
-			.get('https://restaurant-service.tpco.info/restaurants')
+			.get(api.url)
 			.query({ q: this.state.searchQuery }) // query string
-			.set('X-API-Key', 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb')
+			.set('X-API-Key', api.key)
 			.end((err, res) => {
 				if (err) throw err;
 

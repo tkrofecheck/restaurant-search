@@ -7,9 +7,9 @@ export default class MyDate extends Component {
 
 		return (
 			<div className="date">
-				<span class="month">{iDate.month}</span>
-				<span class="date-date">{iDate.date}</span>
-				<span class="year">{iDate.year}</span>
+				<span className="month">{iDate.month}</span>
+				<span className="date-date">{iDate.date}</span>
+				<span className="year">{iDate.year}</span>
 			</div>
 		);
 	}
