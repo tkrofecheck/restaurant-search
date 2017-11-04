@@ -271,6 +271,28 @@ img {
     line-height: 1.2em; } }
 
 /* styles for phone number */
+.Search-results div[data-response='true'] .Filters {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 15px; }
+  .Search-results div[data-response='true'] .Filters select {
+    background-color: #45b0e6;
+    color: #ffffff;
+    font-size: 1.5rem;
+    outline: none;
+    border: 0; }
+  .Search-results div[data-response='true'] .Filters .col-lg-12 {
+    width: auto; }
+
+.Search-results div[data-response='false'] {
+  width: 100%; }
+  .Search-results div[data-response='false'] .Filters {
+    display: none; }
+
+@media screen and (min-width: 768px) {
+  .Filters select:last-child {
+    margin-left: 10px; } }
+
 /* styles for restaurant info (appears in modal) - need to refactor to reusable between page and modal */
 .Restaurant-address .street::after {
   content: ','; }
@@ -396,23 +418,8 @@ img {
 .Restaurant-search[view='results'] .Search-results .jumbotron {
   align-items: flex-start; }
 
-.Filters {
-  display: flex;
-  justify-content: flex-start;
-  padding-bottom: 15px; }
-  .Filters select {
-    background-color: #45b0e6;
-    color: white;
-    font-size: 1.5rem;
-    outline: none;
-    border: 0; }
-  .Filters .col-lg-12 {
-    width: auto; }
-
 @media screen and (min-width: 768px) {
   .Search-form .search-label span {
     font-size: 3em; }
   .Search-form .search-cuisine span {
-    font-size: 2em; }
-  .Filters select:last-child {
-    margin-left: 10px; } }
+    font-size: 2em; } }

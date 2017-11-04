@@ -12,14 +12,12 @@ import { createStore } from 'redux';
 
 import './stylesheets/App.css';
 
-const apiKey = 'GC25gGvU068FNzk16wkfN8vK6JmzsKfk6BsYzhpb';
-
 class App extends Component {
 	render() {
 		return (
 			<div className="App">
 				<AppHeader />
-				<SearchForm apiKey={apiKey} />
+				<SearchForm />
 				<AppFooter />
 			</div>
 		);

@@ -13,7 +13,7 @@ export default class AppHeader extends Component {
         }
         
         return (
-			<header className="App-header">
+			<header className="App-header" data-type="home">
 				<Image attr={imageAttributes} />
 				<SearchBox />
 			</header>

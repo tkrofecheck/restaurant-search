@@ -1,12 +1,4 @@
 /* styles for search form on home page */
-
-$color_1: #ffffff;
-$color_2: #555555;
-$color_3: white;
-$background_color_1: transparent;
-$background_color_2: #ffffff;
-$background_color_3: rgb(69, 176, 230);
-
 .Search-form {
 	background-size: cover !important;
 	padding: 15px 5%;
@@ -14,15 +6,15 @@ $background_color_3: rgb(69, 176, 230);
 
 	.search-type {
 		position: relative;
-		background-color: $background_color_1;
+		background-color: transparent;
 	}
 
 	.search-label {
 		> span {
 			position: relative;
 			float: left;
-			background-color: $background_color_2;
-			color: $color_2;
+			background-color: #ffffff;
+			color: #555555;
 			font-size: 1.5em;
 			font-weight: 600;
 			text-align: left;
@@ -34,8 +26,8 @@ $background_color_3: rgb(69, 176, 230);
 		> span {
 			position: relative;
 			float: left;
-			background-color: $background_color_3;
-			color: $color_1;
+			background-color: rgb(69, 176, 230);
+			color: #ffffff;
 			font-size: 1em;
 			font-weight: 600;
 			font-style: italic;
@@ -50,7 +42,7 @@ $background_color_3: rgb(69, 176, 230);
 
 	.title {
 		font-size: 2em;
-		color: $color_1;
+		color: #ffffff;
 	}
 
 	&:not([data-type='search']) {
@@ -128,24 +120,6 @@ $background_color_3: rgb(69, 176, 230);
 	}
 }
 
-.Filters {
-	display: flex;
-	justify-content: flex-start;
-	padding-bottom: 15px;
-
-	select {
-		background-color: $background_color_3;
-		color: $color_3;
-		font-size: 1.5rem;
-		outline: none;
-		border: 0;
-	}
-
-	.col-lg-12 {
-		width: auto;
-	}
-}
-
 @media screen and (min-width: 768px) {
 	.Search-form .search-label span {
 		font-size: 3em;
@@ -153,9 +127,5 @@ $background_color_3: rgb(69, 176, 230);
 
 	.Search-form .search-cuisine span {
 		font-size: 2em;
-	}
-
-	.Filters select:last-child {
-		margin-left: 10px;
 	}
 }
