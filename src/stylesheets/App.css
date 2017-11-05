@@ -1,433 +1,393 @@
-.App {
+.app {
   display: flex;
   flex-direction: column;
   height: 100%;
   min-width: 320px;
-  text-align: center; }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
-
-.App-header,
-.App-footer {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  align-items: center;
-  background-color: #0e354e;
-  padding: 15px 5%;
-  text-align: left;
-  color: white;
-  z-index: 10; }
-
-.App-header img,
-.App-footer img {
   position: relative;
-  height: 40px;
-  left: -5px;
-  /* logo png has padding - account for this for alignment */ }
-
-.Restaurant-search {
-  display: flex;
-  flex-direction: column;
-  flex-grow: inherit;
-  flex: 9;
-  overflow-y: auto;
-  overflow-x: hidden; }
-
-img {
-  image-rendering: crisp-edges;
-  /* not fully supported yet - but maybe one day! */ }
-
-.bold {
-  font-weight: 600; }
-
-.btn-success {
-  border-radius: 5px !important;
-  /* Bootstrap override */ }
-
-.input-group .form-control {
-  border-radius: 0; }
-
-.input-group .btn-group {
-  display: block; }
-
-.input-group input[type='text'] {
-  z-index: 1; }
-
-.jumbotron {
-  margin-bottom: 0; }
-
-.pad-20 {
-  padding: 20px; }
-
-@media screen and (min-width: 768px) {
-  .App-header img,
-  .App-footer img {
-    height: 50px; }
-  .btn-success {
-    margin-left: 10px; } }
-
-/* styles for restaurant address */
-.address span {
-  margin-right: 5px; }
-
-.address .city::after {
-  content: ','; }
-
-/* styles for inspection grade */
-.Letter-grades {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%; }
-
-.gradeLetterContainer {
-  display: flex;
-  justify-content: space-around; }
-
-.seal {
-  position: relative;
-  float: left;
-  /* allows image to sit behind grade letter */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  z-index: 0; }
-  .seal img {
-    width: 75%;
-    opacity: .5;
-    z-index: 1; }
-
-.gradeImage {
-  position: absolute;
-  opacity: 1; }
-  .gradeImage img {
-    width: 40%; }
-
-.def_gradeLetter {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  height: 60px;
-  width: 60px; }
-
-.tile_gradeLetter {
-  background-image: attr(data-image);
-  background-color: #ffffff;
-  background-position: center 15%;
-  background-repeat: no-repeat;
-  background-size: 60%;
-  width: 75px;
-  height: 75px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  right: 30px;
-  top: 25%;
-  box-shadow: 0px 2px 2px #ababab; }
-  .tile_gradeLetter .gradeImage {
+  /* styles for restaurant address */
+  /* styles for inspection grade */
+  /* styles for images - use classname set on image component */
+  /* styles for restaurant popup modal (consider making this more generic to allow reuse outside restaurant genre) */
+  /* styles for inspection date */
+  /* styles for phone number */
+  /* styles for search box in header */
+  /* styles for search form on home page */ }
+  .app img {
+    image-rendering: crisp-edges;
+    /* not fully supported yet - but maybe one day! */ }
+  .app .app-body {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 75%; }
-    .tile_gradeLetter .gradeImage img {
-      width: 60%; }
-
-/* Bootstrap overrides */
-.Letter-grades .col-sm-6 {
-  margin-bottom: 20px; }
-
-.Letter-grades.row {
-  margin: 0; }
-
-@media screen and (min-width: 667px) {
-  .def_gradeLetter {
-    height: 75px;
-    width: 75px; } }
-
-@media screen and (min-width: 768px) {
-  .gradeImage img {
-    width: 50%; }
-  .def_gradeLetter {
-    height: 150px;
-    width: 150px; }
-  .tile_gradeLetter {
-    width: 100px;
-    height: 100px;
-    top: 32%; } }
-
-@media screen and (min-width: 1024px) {
-  .gradeImage img {
-    width: 75%; }
-  .def_gradeLetter {
-    height: 200px;
-    width: 200px; } }
-
-@media screen and (min-width: 1240px) {
-  .gradeImage img {
-    width: 100%; }
-  .Letter-grades {
-    flex-wrap: wrap; }
-  .def_gradeLetter {
-    width: 250px;
-    height: 250px; } }
-
-@media screen and (min-width: 1440px) {
-  .def_gradeLetter {
-    width: 300px;
-    height: 300px; } }
-
-/* styles for images - use classname set on image component */
-/* styles for inspection date */
-.date {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; }
-  .date .month::after, .date .date-date::after {
-    content: '\2219'; }
-
-/* styles for restaurant popup modal (consider making this more generic to allow reuse outside restaurant genre) */
-.modal {
-  display: block !important; }
-
-.Restaurant-modal {
-  position: fixed;
-  display: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -45%);
-  width: 85%;
-  height: 100%;
-  max-height: 85%;
-  background: #ffffff;
-  box-shadow: 0px 0px 1000000px 200px #555555;
-  z-index: 100;
-  font-size: 1em; }
-  .Restaurant-modal.show {
-    display: block;
-    opacity: 0;
-    transition: opacity 500ms ease-in-out; }
-  .Restaurant-modal.show.visible {
-    opacity: 1; }
-  .Restaurant-modal .Restaurant-details {
-    display: flex;
-    height: inherit; }
-    .Restaurant-modal .Restaurant-details .close {
-      position: absolute;
-      top: -35px;
-      right: 0px;
+    flex-direction: column;
+    flex-grow: inherit;
+    flex: 9;
+    overflow-y: auto;
+    overflow-x: hidden; }
+    .app .app-body[view='home'] .search-results form {
+      display: none; }
+    .app .app-body[view='home'] .search-results .jumbotron {
+      align-items: center; }
+    .app .app-body[view='results'] .restaurant-search {
+      position: fixed;
+      top: 15px;
+      right: 5%;
+      width: 50%;
+      height: 80px; }
+      .app .app-body[view='results'] .restaurant-search form {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        height: 100%; }
+        .app .app-body[view='results'] .restaurant-search form select {
+          display: none; }
+    .app .app-body[view='results'] .search-form {
       display: flex;
+      align-items: flex-start;
+      z-index: 100; }
+    .app .app-body[view='results'] .search-results .jumbotron {
+      align-items: flex-start; }
+    .app .app-body .letter-grid {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
       align-items: center;
-      text-shadow: none;
-      color: white;
+      width: 100%;
+      height: 100%; }
+    .app .app-body .restaurant-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start; }
+  .app .app-footer,
+  .app .app-header {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    background-color: #0e354e;
+    padding: 15px 5%;
+    text-align: left;
+    color: white;
+    z-index: 10; }
+    .app .app-footer img,
+    .app .app-header img {
+      position: relative;
+      height: 40px;
+      left: -5px;
+      /* logo png has padding - account for this for alignment */ }
+      @media screen and (min-width: 768px) {
+        .app .app-footer img,
+        .app .app-header img {
+          height: 50px; } }
+  .app .bold {
+    font-weight: 600; }
+  .app .pad-20 {
+    padding: 20px; }
+  .app .address span {
+    margin-right: 5px; }
+  .app .address .city::after {
+    content: ','; }
+  .app .filters {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 15px; }
+    .app .filters select {
+      background-color: #45b0e6;
+      color: #ffffff;
+      font-size: 1.5rem;
+      outline: none;
+      border: 0; }
+      @media screen and (min-width: 768px) {
+        .app .filters select[name='price'] {
+          margin-left: 10px; } }
+    .app .filters .col-lg-12 {
+      width: auto; }
+  .app .grade-letter-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    width: 65px;
+    height: 65px; }
+    .app .grade-letter-container .grade-image {
+      position: absolute;
       opacity: 1;
-      font-weight: normal; }
-    .Restaurant-modal .Restaurant-details .close::after {
-      content: '\2716';
-      font-size: 1em;
-      width: 30px;
-      height: 30px;
-      border-radius: 15px;
-      background-color: #ffffff;
-      margin-left: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #8a8a8a; }
-  .Restaurant-modal .Restaurant-moreinfo {
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto; }
-    .Restaurant-modal .Restaurant-moreinfo .Restaurant-info {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      outline: none;
-      border-bottom: 1px solid #ababab;
-      padding: 0 0 20px 0;
-      margin: 0; }
-      .Restaurant-modal .Restaurant-moreinfo .Restaurant-info .Restaurant-contact {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        width: 75%; }
-      .Restaurant-modal .Restaurant-moreinfo .Restaurant-info .Restaurant-inspection {
-        width: 25%; }
-
-@media screen and (min-width: 768px) {
-  .Restaurant-modal .Restaurant-contact .Restaurant-name {
-    font-size: 2em;
-    line-height: 1em; } }
-
-@media screen and (min-width: 1024px) {
-  .Restaurant-modal .Restaurant-contact .Restaurant-name {
-    font-size: 3em;
-    line-height: 1.2em; } }
-
-/* styles for phone number */
-.Search-results div[data-response='true'] .Filters {
-  display: flex;
-  justify-content: flex-start;
-  padding-bottom: 15px; }
-  .Search-results div[data-response='true'] .Filters select {
-    background-color: #45b0e6;
-    color: #ffffff;
-    font-size: 1.5rem;
-    outline: none;
-    border: 0; }
-  .Search-results div[data-response='true'] .Filters .col-lg-12 {
-    width: auto; }
-
-.Search-results div[data-response='false'] {
-  width: 100%; }
-  .Search-results div[data-response='false'] .Filters {
-    display: none; }
-
-@media screen and (min-width: 768px) {
-  .Filters select:last-child {
-    margin-left: 10px; } }
-
-/* styles for restaurant info (appears in modal) - need to refactor to reusable between page and modal */
-.Restaurant-address .street::after {
-  content: ','; }
-
-.Restaurant-info {
-  margin-bottom: 25px;
-  outline: 1px solid #ababab;
-  outline-offset: -1px;
-  padding: 10px;
-  text-align: left; }
-
-.Restaurant-inspection-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  text-align: left;
-  padding: 0px 20px 20px 20px; }
-
-.Restaurant-name {
-  color: #0e354e;
-  font-weight: 600; }
-
-.Inspection-violation span {
-  display: block;
-  padding-left: 20px; }
-
-/* styles for restaurant photo */
-.Restaurant-photo {
-  height: 125px; }
-
-@media screen and (min-width: 768px) {
-  .Restaurant-photo {
-    height: 175px; } }
-
-@media screen and (min-width: 1024px) {
-  .Restaurant-photo {
-    height: 200px; } }
-
-/* styles for search box in header */
-/* styles for search form on home page */
-.Search-form {
-  background-size: cover !important;
-  padding: 15px 5%;
-  z-index: 1; }
-  .Search-form .search-type {
-    position: relative;
-    background-color: transparent; }
-  .Search-form .search-label > span {
+      width: inherit;
+      height: inherit; }
+      .app .grade-letter-container .grade-image img {
+        width: 40%; }
+    @media screen and (min-width: 568px) {
+      .app .grade-letter-container {
+        height: 75px;
+        width: 75px; } }
+    @media screen and (min-width: 667px) {
+      .app .grade-letter-container {
+        height: 100px;
+        width: 100px; } }
+    @media screen and (min-width: 768px) {
+      .app .grade-letter-container {
+        height: 150px;
+        width: 150px; } }
+    @media screen and (min-width: 1024px) {
+      .app .grade-letter-container {
+        height: 200px;
+        width: 200px; } }
+    @media screen and (min-width: 1240px) {
+      .app .grade-letter-container {
+        width: 250px;
+        height: 250px; } }
+    @media screen and (min-width: 1440px) {
+      .app .grade-letter-container {
+        width: 300px;
+        height: 300px; } }
+  .app .inspection-seal {
     position: relative;
     float: left;
-    background-color: #ffffff;
-    color: #555555;
-    font-size: 1.5em;
-    font-weight: 600;
-    text-align: left;
-    padding: 5px; }
-  .Search-form .search-cuisine > span {
-    position: relative;
-    float: left;
-    background-color: #45b0e6;
-    color: #ffffff;
-    font-size: 1em;
-    font-weight: 600;
-    font-style: italic;
-    text-transform: uppercase;
-    padding: 5px;
-    text-align: left; }
-    .Search-form .search-cuisine > span::before {
-      content: attr(data-value) " "; }
-  .Search-form .title {
-    font-size: 2em;
-    color: #ffffff; }
-  .Search-form:not([data-type='search']) .btn-success {
-    display: block;
-    display: none; }
-  .Search-form:not([data-type='search']) .title {
-    display: none; }
-  .Search-form:not([data-type='search']) .input-group {
-    display: none; }
-  .Search-form:not([data-type='search']) .search-type {
-    display: flex;
-    flex-direction: column;
-    padding: 20px 0; }
-  .Search-form.jumbotron {
-    background: #87e0fd;
-    /* Old browsers */
-    background: -moz-linear-gradient(left, #87e0fd 0%, #0e354e 0%, #134362 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(left, #87e0fd 0%, #0e354e 0%, #134362 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right, #87e0fd 0%, #0e354e 0%, #134362 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#134362',GradientType=1 ); }
-
-.Search-form[data-type='search'] .title {
-  display: inline-table; }
-
-.Search-form[data-type='search'] .input-group {
-  display: inline-table; }
-
-.Search-form[data-type='search'] .search-type {
-  display: none; }
-
-.Search-results {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%; }
-  .Search-results .jumbotron {
+    /* allows image to sit behind grade letter */
     display: flex;
     justify-content: center;
+    align-items: center;
+    z-index: 0; }
+    .app .inspection-seal img {
+      width: 75%;
+      opacity: .5;
+      z-index: 1; }
+  .app .modal {
+    display: block !important; }
+  .app .restaurant-modal {
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    width: 85%;
     height: 100%;
+    max-height: 85%;
+    background: #ffffff;
+    box-shadow: 0px 0px 1000000px 200px #555555;
+    z-index: 100;
+    font-size: 1em; }
+    .app .restaurant-modal.show {
+      display: block;
+      opacity: 0;
+      transition: opacity 500ms ease-in-out; }
+    .app .restaurant-modal.show.visible {
+      opacity: 1; }
+    .app .restaurant-modal .restaurant-details {
+      display: flex;
+      height: inherit; }
+      .app .restaurant-modal .restaurant-details .close {
+        position: absolute;
+        top: -35px;
+        right: 0px;
+        display: flex;
+        align-items: center;
+        text-shadow: none;
+        color: white;
+        opacity: 1;
+        font-weight: normal; }
+      .app .restaurant-modal .restaurant-details .close::after {
+        content: '\2716';
+        font-size: 1em;
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        background-color: #ffffff;
+        margin-left: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #8a8a8a; }
+    .app .restaurant-modal .restaurant-moreinfo {
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto; }
+      .app .restaurant-modal .restaurant-moreinfo .restaurant-info {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        outline: none;
+        border-bottom: 1px solid #ababab;
+        padding: 0 0 20px 0;
+        margin: 0; }
+        .app .restaurant-modal .restaurant-moreinfo .restaurant-info .restaurant-contact {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          width: 75%; }
+        .app .restaurant-modal .restaurant-moreinfo .restaurant-info .restaurant-inspection {
+          width: 25%; }
+  @media screen and (min-width: 768px) {
+    .app .restaurant-modal .restaurant-contact .restaurant-name {
+      font-size: 2em;
+      line-height: 1em; } }
+  @media screen and (min-width: 1024px) {
+    .app .restaurant-modal .restaurant-contact .restaurant-name {
+      font-size: 3em;
+      line-height: 1.2em; } }
+  .app .date {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; }
+    .app .date .month::after, .app .date .date-date::after {
+      content: '\2219'; }
+  .app .restaurant {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-wrap: wrap;
     width: 100%;
-    background: none;
+    /* styles for restaurant info (appears in modal) - need to refactor to reusable between page and modal */
+    /* styles for restaurant photo */ }
+    .app .restaurant .grade-letter-container {
+      position: absolute;
+      top: 20%;
+      right: 2%;
+      width: 75px;
+      height: 75px;
+      box-shadow: 0px 0px 3px #000000; }
+    .app .restaurant .inspection-info {
+      display: none; }
+    @media screen and (min-width: 768px) {
+      .app .restaurant {
+        align-self: stretch;
+        width: 31%; } }
+    .app .restaurant .restaurant-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 25px;
+      outline: 1px solid #ababab;
+      outline-offset: -1px;
+      padding: 10px;
+      width: 100%;
+      /* Specific to restaurant info */ }
+      @media screen and (min-width: 768px) {
+        .app .restaurant .restaurant-info {
+          flex-grow: 1;
+          justify-content: flex-start; } }
+      .app .restaurant .restaurant-info .address .street::after {
+        content: ','; }
+      .app .restaurant .restaurant-info .name {
+        color: #0e354e;
+        font-weight: 600; }
+    .app .restaurant .photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 125px;
+      overflow: hidden; }
+      .app .restaurant .photo img {
+        width: 100%;
+        height: auto; }
+  .app .restaurants {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+  .app .search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover !important;
+    background-position: center !important;
     padding: 15px 5%;
     z-index: 1; }
-
-.Restaurant-search[view='home'] .Search-results form {
-  display: none; }
-
-.Restaurant-search[view='home'] .Search-results .jumbotron {
-  align-items: center; }
-
-.Restaurant-search[view='results'] .Search-results .jumbotron {
-  align-items: flex-start; }
-
-@media screen and (min-width: 768px) {
-  .Search-form .search-label span {
-    font-size: 3em; }
-  .Search-form .search-cuisine span {
-    font-size: 2em; } }
+    .app .search-form .search-type {
+      position: relative;
+      background-color: transparent; }
+    .app .search-form .search-label > span {
+      position: relative;
+      float: left;
+      background-color: #ffffff;
+      color: #555555;
+      font-size: 1.5em;
+      font-weight: 600;
+      text-align: left;
+      padding: 5px; }
+    .app .search-form .search-cuisine > span {
+      position: relative;
+      float: left;
+      background-color: #45b0e6;
+      color: #ffffff;
+      font-size: 1em;
+      font-weight: 600;
+      font-style: italic;
+      text-transform: uppercase;
+      padding: 5px;
+      text-align: left; }
+      .app .search-form .search-cuisine > span::before {
+        content: attr(data-value) " "; }
+    .app .search-form .title {
+      font-size: 2em;
+      color: #ffffff; }
+    .app .search-form:not([data-type='search']) .title {
+      display: none; }
+    .app .search-form:not([data-type='search']) .search-type {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0; }
+    .app .search-form.jumbotron {
+      background: #87e0fd;
+      /* Old browsers */
+      background: -moz-linear-gradient(left, #87e0fd 0%, #0e354e 0%, #134362 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(left, #87e0fd 0%, #0e354e 0%, #134362 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to right, #87e0fd 0%, #0e354e 0%, #134362 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#134362',GradientType=1 ); }
+  .app .search-form[data-type='search'] .title {
+    display: inline-table; }
+  .app .search-form[data-type='search'] .input-group {
+    display: inline-table; }
+  .app .search-form[data-type='search'] .search-type {
+    display: none; }
+  @media screen and (min-width: 768px) {
+    .app .search-form .search-label span {
+      font-size: 3em; }
+    .app .search-form .search-cuisine span {
+      font-size: 2em; } }
+  .app .search-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%; }
+    .app .search-results .jumbotron {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      background: none;
+      padding: 15px 5%;
+      z-index: 1; }
+  .app .search-results div[data-response='false'] {
+    width: 100%;
+    height: 100%; }
+    .app .search-results div[data-response='false'] .Filters {
+      display: none; }
+  .app .btn-success {
+    border-radius: 5px !important;
+    /* Bootstrap override */ }
+    @media screen and (min-width: 768px) {
+      .app .btn-success {
+        margin-left: 10px; } }
+  .app .input-group .form-control {
+    border-radius: 0; }
+  .app .input-group .btn-group {
+    display: block; }
+  .app .input-group input[type='text'] {
+    z-index: 1; }
+  .app .jumbotron {
+    margin-bottom: 0; }

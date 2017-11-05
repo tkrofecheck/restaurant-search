@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Image from './image';
-import SearchBox from './searchBox';
 import logo from '../images/logos/thomas_logo.png';
 
 export default class AppHeader extends Component {
@@ -13,9 +12,8 @@ export default class AppHeader extends Component {
         }
         
         return (
-			<header className="App-header" data-type="home">
+			<header className="app-header" data-type="home">
 				<Image attr={imageAttributes} />
-				<SearchBox />
 			</header>
 		);
 	}

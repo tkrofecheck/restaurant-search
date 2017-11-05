@@ -1,6 +1,11 @@
 /* styles for search form on home page */
-.Search-form {
+.search-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    align-items: center;
 	background-size: cover !important;
+	background-position: center !important;
 	padding: 15px 5%;
 	z-index: 1;
 
@@ -46,14 +51,7 @@
 	}
 
 	&:not([data-type='search']) {
-		.btn-success {
-			display: block;
-			display: none;
-		}
 		.title {
-			display: none;
-		}
-		.input-group {
 			display: none;
 		}
 		.search-type {
@@ -72,7 +70,7 @@
 	}
 }
 
-.Search-form[data-type='search'] {
+.search-form[data-type='search'] {
 	.title {
 		display: inline-table;
 	}
@@ -86,50 +84,12 @@
 	}
 }
 
-.Search-results {
-	display: flex;
-    justify-content: center;
-	align-items: center;
-	height: 100%;
-    width: 100%;
-	
-	.jumbotron {
-		display: flex;
-		justify-content: center;
-		height: 100%;
-		width: 100%;
-		background: none;
-		padding: 15px 5%;
-		z-index: 1;
-	}
-}
-
-.Restaurant-search[view='home'] {
-	.Search-results {
-		form {
-			display: none;
-		}
-		
-		.jumbotron {
-			align-items: center;
-		}
-	}
-}
-
-.Restaurant-search[view='results'] {
-	.Search-results {
-		.jumbotron {
-			align-items: flex-start;
-		}
-	}
-}
-
 @media screen and (min-width: 768px) {
-	.Search-form .search-label span {
+	.search-form .search-label span {
 		font-size: 3em;
 	}
 
-	.Search-form .search-cuisine span {
+	.search-form .search-cuisine span {
 		font-size: 2em;
 	}
 }

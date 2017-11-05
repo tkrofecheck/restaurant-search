@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import Address from './address';
-import Grade from './grade';
+import InspectionGrade from './inspectionGrade';
+import InspectionInfo from './inspectionInfo';
+import RestaurantInfo from './restaurantInfo';
 import RestaurantPhoto from './restaurantPhoto';
-import greySeal from '../images/seals/Seal_of_New_York_City_BW.png';
 
 export default class Restaurant extends Component {
 	constructor(props) {
@@ -17,40 +17,17 @@ export default class Restaurant extends Component {
         this.props.onclick(event, this.props.data);
     }
 
-	render() {
-        var restaurant = this.props.data;
-        
+	render() {        
         return (
 			<div
 				key={this.props.index}
-				className="col-sm-4"
+				className="restaurant"
 				onClick={(event) => this.handleClick(event)}
 			>
-				<RestaurantPhoto url={restaurant.imageUrl} />
-				<div className="Restaurant-inspection">
-					<Grade
-						className="tile_gradeLetter"
-						value={restaurant.inspections[0].grade}
-						inspectionDate={restaurant.inspections[0].grade_date}
-						seal={greySeal}
-					/>
-				</div>
-				<div className="Restaurant-info">
-					<div className="Restaurant-name">{restaurant.name}</div>
-					<div className="Restaurant-cuisine">
-						{restaurant.cuisine}-$$$$
-					</div>
-					<div className="Restaurant-address">
-						<Address
-							building={restaurant.building}
-							street={restaurant.street}
-							boro={restaurant.boro}
-							state={restaurant.state}
-							zip={restaurant.state}
-							phone={restaurant.phone}
-						/>
-					</div>
-				</div>
+				<RestaurantPhoto url={this.props.data.imageUrl} alt={this.props.data.name} />
+				<InspectionGrade date={this.props.data.inspections[0].grade_date} grade={this.props.data.inspections[0].grade} seal="grey" />
+				<InspectionInfo data={this.props.data.inspections[0]} />
+				<RestaurantInfo data={this.props.data} />
 			</div>
 		);
 	}

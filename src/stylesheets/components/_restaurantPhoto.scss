@@ -1,17 +1,21 @@
 /* styles for restaurant photo */
 
-.Restaurant-photo {
-	height: 125px;
-}
+.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 125px;
+    overflow: hidden;
 
-@media screen and (min-width: 768px) {
-	.Restaurant-photo {
-		height: 175px;
-	}
-}
+    img {
+        width: 100%;
+        height: auto;
+    }
 
-@media screen and (min-width: 1024px) {
-	.Restaurant-photo {
-		height: 200px;
-	}
+    @media screen and (min-width: 768px) {
+    }
+    
+    @media screen and (min-width: 1024px) {
+    }
 }

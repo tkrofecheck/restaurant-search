@@ -1,152 +1,52 @@
 /* styles for inspection grade */
-.Letter-grades {
-	display: flex;
-	flex-flow: row;
-	flex-wrap: wrap;
-    justify-content: space-between;
-	align-items: center;
-	width: 100%;
-}
-
-.gradeLetterContainer {
+.grade-letter-container {
 	display: flex;
 	justify-content: space-around;
-}
-
-.seal {
-	position: relative;
-	float: left; /* allows image to sit behind grade letter */
-	display: flex;
-    justify-content: center;
 	align-items: center;
-	width: 100%;
-	height: 100%;
-	z-index: 0;
-	
-	img {
-		width: 75%;
-		opacity: .5;
-		z-index: 1;
-	}
-}
+	background-color: white;
+	width: 65px;
+	height: 65px;
 
-.gradeImage {
-	position: absolute;
-	opacity: 1;
-
-	img {
-		width: 40%;
-	}
-}
-
-.def_gradeLetter {
-	// Grade letter on home page
-	position: relative;
-	display: flex;
-    justify-content: center;
-	align-items: center;
-	background-color: #ffffff;
-	height: 60px;
-	width: 60px;
-}
-
-.tile_gradeLetter {
-	// Grade letter on result page tiles
-	background-image: attr(data-image);
-	background-color: #ffffff;
-	background-position: center 15%;
-	background-repeat: no-repeat;
-	background-size: 60%;
-	width: 75px;
-	height: 75px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	position: absolute;
-	right: 30px;
-	top: 25%;
-	box-shadow: 0px 2px 2px #ababab;
-
-	.gradeImage {
+	.grade-image {
+		position: absolute;
+		opacity: 1;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 100%;
-		height: 75%;
-
+		width: inherit;
+		height: inherit;
+	
 		img {
-			width: 60%;
+			width: 40%;
 		}
 	}
-}
 
-/* Bootstrap overrides */
-.Letter-grades .col-sm-6 {
-	margin-bottom: 20px;
-}
-
-.Letter-grades.row {
-	margin: 0;
-}
-
-@media screen and (min-width: 667px) {
-	.def_gradeLetter {
+	@media screen and (min-width: 568px) {
 		height: 75px;
 		width: 75px;
 	}
-}
 
-@media screen and (min-width: 768px) {
-	.gradeImage {
-		img {
-			width: 50%;
-		}
+	@media screen and (min-width: 667px) {
+		height: 100px;
+		width: 100px;
 	}
 	
-	.def_gradeLetter {
+	@media screen and (min-width: 768px) {
 		height: 150px;
 		width: 150px;
 	}
-
-	.tile_gradeLetter {
-		width: 100px;
-		height: 100px;
-		top: 32%;
-	}
-}
-
-@media screen and (min-width: 1024px) {	
-	.gradeImage {
-		img {
-			width: 75%;
-		}
-	}
 	
-	.def_gradeLetter {
+	@media screen and (min-width: 1024px) {	
 		height: 200px;
 		width: 200px;
 	}
-}
-
-@media screen and (min-width: 1240px) {
-	.gradeImage {
-		img {
-			width: 100%;
-		}
-	}
 	
-	.Letter-grades {
-		flex-wrap: wrap;
-	}
-	
-	.def_gradeLetter {
+	@media screen and (min-width: 1240px) {
 		width: 250px;
 		height: 250px;
 	}
-}
-
-@media screen and (min-width: 1440px) {
-	.def_gradeLetter {
+	
+	@media screen and (min-width: 1440px) {
 		width: 300px;
 		height: 300px;
 	}

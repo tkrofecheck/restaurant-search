@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Image from './image';
-import MyDate from './myDate';
-import _isUndefined from 'lodash/fp/isUndefined';
 import gradeA from '../images/letters/a.png';
 import gradeB from '../images/letters/b.png';
 import gradeC from '../images/letters/c.png';
@@ -15,15 +13,7 @@ export default class Grade extends Component {
 			src: null,
 			style: null
 		};
-		var sealAttributes = {
-			alt: 'NYC Seal',
-			className: null,
-			src: this.props.seal,
-			style: null
-		};
-
 		var grade;
-		var date;
 
 		switch (this.props.value) {
 			case 'A':
@@ -59,16 +49,8 @@ export default class Grade extends Component {
 				break;
 		}
 
-		if (!_isUndefined(this.props.inspectionDate) && this.props.inspectionDate !== null) {
-			date = <MyDate date={this.props.inspectionDate} />;
-		}
-
 		return (
-			<div className={this.props.className}>
-				<div className="seal"><Image attr={sealAttributes} /></div>
-				<div className="gradeImage">{grade}</div>
-				{date}
-			</div>
+			<div className="grade-image">{grade}</div>
 		);
 	}
 }

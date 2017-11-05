@@ -1,0 +1,14 @@
+.inspection-seal {
+	position: relative;
+	float: left; /* allows image to sit behind grade letter */
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	z-index: 0;
+	
+	img {
+		width: 75%;
+		opacity: .5;
+		z-index: 1;
+	}
+}

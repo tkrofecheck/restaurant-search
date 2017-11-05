@@ -1,0 +1,23 @@
+.filters {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 15px;
+
+    select {
+        background-color: rgb(69, 176, 230);
+        color: #ffffff;
+        font-size: 1.5rem;
+        outline: none;
+        border: 0;
+
+        &[name='price'] {
+            @media screen and (min-width: 768px) {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .col-lg-12 {
+        width: auto;
+    }
+}

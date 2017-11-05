@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import { Form, FormControl } from 'react-bootstrap';
 import Modal from 'react-bootstrap-modal';
 import _map from 'lodash/map';
+import Filters from './filters';
 import Grade from './grade';
-//import Modal from './modal';
+import InspectionSeal from './inspectionSeal';
 import Restaurant from './restaurant';
 import RestaurantMoreInfo from './restaurantInfo';
-import blueSeal from '../images/seals/Nyc-seal-blue.png';
 
-const gradeLetters = ['A', 'B', 'C', 'GP'];
-const noRestaurants = _map(gradeLetters, function(letter, index) {
+const noRestaurants = _map(['A', 'B', 'C', 'GP'], function(letter, index) {
 	return (
-		<div className="gradeLetterContainer" key={index}>
-			<Grade
-				value={letter}
-				seal={blueSeal}
-				className="def_gradeLetter"
-				showDate="false"
-			/>
+		<div className="grade-letter-container" key={index}>
+			<InspectionSeal seal="grey" />
+			<Grade value={letter} />
 		</div>
 	);
 });
@@ -28,11 +22,12 @@ export default class Restaurants extends Component {
 		super(props);
 
 		this.state = {
-			modalClass: 'Restaurant-modal hidden',
+			modalClass: 'restaurant-modal hidden',
 			modalContent: <div />,
-			restaurants: <div className="Letter-grades">{noRestaurants}</div>,
+			restaurants: noRestaurants,
 			responseData: false,
-			showinfo: false
+			showinfo: false,
+			tiles: 'letter-grid'
 		};
 
 		autoBind(this);
@@ -60,7 +55,8 @@ export default class Restaurants extends Component {
 			if (this.state.restaurants !== restaurants) {
 				this.setState({
 					restaurants: restaurants,
-					responseData: true
+					responseData: true,
+					tiles: 'restaurant-grid'
 				});
 			}
 		}
@@ -71,7 +67,7 @@ export default class Restaurants extends Component {
 
 		if (content !== null) {
 			modalContent = (
-				<div className="Restaurant-details">
+				<div className="restaurant">
 					<RestaurantMoreInfo data={content} />
 				</div>
 			);
@@ -89,52 +85,24 @@ export default class Restaurants extends Component {
 		});
 	}
 
+	onGradeChange(event) {
+		event.preventDefault();
+	}
+
+	onPriceChange(event) {
+		event.preventDefault();
+	}
+
 	render() {
+		let filterEvents = {
+			ongradeselect: (event) => this.onGradeChange(event),
+			onpriceselect: (event) => this.onPriceChange(event)
+		};
+		
 		return (
 			<div data-response={this.state.responseData}>
-				<Form inline>
-					<div className="row Filters">
-						<div className="col-lg-12">
-							<div className="input-group">
-								<div className="input-group-btn">
-									<FormControl
-										componentClass="select"
-										placeholder="all"
-										bsStyle="info"
-										bsSize="small"
-										name="grade"
-									>
-										<option value="all">Grade</option>
-										<option value="a">Grade A</option>
-										<option value="b">Grade B</option>
-										<option value="c">Grade C</option>
-										<option value="gp">
-											Grade Pending
-										</option>
-									</FormControl>
-									<FormControl
-										componentClass="select"
-										placeholder="all"
-										bsStyle="info"
-										bsSize="small"
-										name="price"
-									>
-										<option value="all">Price</option>
-										<option value="1">$</option>
-										<option value="2">$$</option>
-										<option value="3">$$$</option>
-										<option value="4">$$$$</option>
-									</FormControl>
-								</div>
-							</div>
-						</div>
-					</div>
-				</Form>
-				<div>{this.state.restaurants}</div>
-				{/* <Modal
-					content={this.state.modalContent}
-					modalClass={this.state.modalClass}
-				/> */}
+				<Filters events={filterEvents} />
+				<div className={this.state.tiles}>{this.state.restaurants}</div>
 				<Modal
 					show={this.state.showinfo}
 					onHide={event => this.closeModal(event)}

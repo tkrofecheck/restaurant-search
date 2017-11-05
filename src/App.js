@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AppHeader from './components/appHeader';
 import AppFooter from './components/appFooter';
-import SearchForm from './components/searchForm';
+import AppBody from './components/appBody';
 
 
 /*
@@ -15,9 +15,9 @@ import './stylesheets/App.css';
 class App extends Component {
 	render() {
 		return (
-			<div className="App">
+			<div className="app">
 				<AppHeader />
-				<SearchForm />
+				<AppBody />
 				<AppFooter />
 			</div>
 		);

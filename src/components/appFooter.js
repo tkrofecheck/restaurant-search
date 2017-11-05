@@ -12,7 +12,7 @@ export default class AppFooter extends Component {
         }
         
         return (
-			<footer className="App-footer">
+			<footer className="app-footer">
 				<Image attr={imageAttributes} />
 			</footer>
 		);

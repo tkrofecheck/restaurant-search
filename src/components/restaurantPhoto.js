@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import Image from './image';
 
 export default class RestaurantPhoto extends Component {
 	render() {
 		var restaurantStyle = {
-			backgroundImage: 'url(' + this.props.url + ')',
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: 'cover',
+			className: null,
+			src: this.props.url,
+			alt: this.props.alt,
+			style: null
 		};
 		
 		return (
-			<div className="Restaurant-photo" style={restaurantStyle}></div>
+			<div className="photo">
+				<Image attr={restaurantStyle} />
+			</div>
 		)
 	}
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import { Button, Form, FormControl } from 'react-bootstrap';
 import Restaurants from './restaurants';
+import SearchBox from './searchBox';
 import gradeBgStart from '../images/restaurants/image_7.jpg';
 
 /* Installed globally */
@@ -15,14 +15,12 @@ export default class SearchForm extends Component {
 	constructor(props) {
 		super(props);
 
-		var gradesBackground = {
-			backgroundImage: 'url(' + gradeBgStart + ')',
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: 'cover'
-		};
-
 		this.state = {
-			gradesBackground: gradesBackground,
+			gradesBackground: {
+				backgroundImage: 'url(' + gradeBgStart + ')',
+				backgroundRepeat: 'no-repeat',
+				backgroundSize: 'cover'
+			},
 			querySubmit: null,
 			response: false,
 			responseData: [],
@@ -38,13 +36,19 @@ export default class SearchForm extends Component {
 		autoBind(this);
 	}
 
-	handleGradeType(value) {
+	handleGradeType(event) {
+		event.stopPropagation();
+		
+		var value = event.target.value;
+		
 		this.setState({
 			searchFilter: value
 		});
 	}
 
 	handleInputChange(event) {
+		event.stopPropagation();
+		
 		var target = event.target;
 		var value = target.value;
 		var name = target.id;
@@ -55,6 +59,8 @@ export default class SearchForm extends Component {
 	}
 
 	_handleKeyPress(event) {
+		event.stopPropagation();
+		
 		if (event.key === 'Enter') {
 			this.handleSubmit(event);
 		}
@@ -62,6 +68,7 @@ export default class SearchForm extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
+		event.stopPropagation();
 
 		var _this = this;
 
@@ -73,15 +80,19 @@ export default class SearchForm extends Component {
 				if (err) throw err;
 
 				var data = res.body;
-				
+
+
 				console.log('response', res);
 				_this.setState({
 					response: true,
 					responseData: data
 				});
-				_this.setState({ view : 'results' });
+				_this.setState({ view: 'results' });
 				_this.setState({ searchType: data[0].cuisine });
-				_this.setState({ searchBackground: 'url(' + data[data.length-1].imageUrl + ') no-repeat' });
+				_this.setState({
+					searchBackground:
+						'url(' + data[data.length - 1].imageUrl + ') no-repeat'
+				});
 				_this.setState({ gradesBackground: null });
 			});
 	}
@@ -91,62 +102,34 @@ export default class SearchForm extends Component {
 			background: this.state.searchBackground
 		};
 
+		var searchEvents = {
+			onselect: (event) => this.handleGradeType(event),
+			oninputchange: (event) => this.handleInputChange(event),
+			onkeypress: (event) => this._handleKeyPress(event),
+			onsubmit: (event) => this.handleSubmit(event)
+		};
+
 		return (
-			<div className="Restaurant-search" view={this.state.view}>
+			<div className="app-body" view={this.state.view}>
 				<div
-					className="jumbotron Search-form"
+					className="jumbotron search-form"
 					style={searchFormStyle}
 					data-type={this.state.searchType}
 				>
 					<div className="title">NYC Restaurants</div>
-					<Form inline>
-						<div className="row">
-							<div className="col-lg-12">
-								<div className="input-group">
-									<div className="input-group-btn">
-										<FormControl
-											componentClass="select"
-											placeholder="all"
-											bsStyle="default"
-											bsSize="large"
-											id="searchFilter"
-											onSelect={event =>
-												this.handleGradeType(event)}
-										>
-											<option value="all">All</option>
-										</FormControl>
-										<FormControl
-											type="text"
-											bsSize="large"
-											id="searchQuery"
-											value={this.state.searchQuery}
-											onChange={event =>
-												this.handleInputChange(event)}
-											onKeyPress={event =>
-												this._handleKeyPress(event)}
-										/>
-									</div>
-								</div>
-								<Button
-									bsStyle="success"
-									bsSize="large"
-									onClick={this.handleSubmit}
-								>
-									Search
-								</Button>
-								<div className="search-type">
-									<div className="search-label">
-										<span>Search:</span>
-									</div>
-									<div className="search-cuisine">
-										<span data-value={this.state.searchType}>Restaurants</span>
-									</div>
-								</div>
-							</div>
+					<SearchBox events={searchEvents} searchType={this.state.searchType} searchQuery={this.state.searchQuery} />
+					<div className="search-type">
+						<div className="search-label">
+							<span>Search:</span>
 						</div>
-					</Form>
+						<div className="search-cuisine">
+							<span data-value={this.state.searchType}>
+								Restaurants
+							</span>
+						</div>
+					</div>
 				</div>
-				<div className="Search-results">
+				<div className="search-results">
 					<div
 						className="jumbotron"
 						style={this.state.gradesBackground}

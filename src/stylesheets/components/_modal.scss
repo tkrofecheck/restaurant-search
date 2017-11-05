@@ -4,7 +4,7 @@
 	display: block !important;
 }
 
-.Restaurant-modal {
+.restaurant-modal {
 	position: fixed;
 	display: none;
 	top: 50%;
@@ -28,7 +28,7 @@
 		opacity: 1;
 	}
 
-	.Restaurant-details {
+	.restaurant-details {
 		display: flex;
 		height: inherit;
 
@@ -59,12 +59,12 @@
 		}
 	}
 
-	.Restaurant-moreinfo {
+	.restaurant-moreinfo {
 		width: 100%;
 		overflow-x: hidden;
 		overflow-y: auto;
 
-		.Restaurant-info {
+		.restaurant-info {
 			display: flex;
 			justify-content: space-around;
 			align-items: center;
@@ -73,14 +73,14 @@
 			padding: 0 0 20px 0;
 			margin: 0;
 
-			.Restaurant-contact {
+			.restaurant-contact {
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-start;
 				width: 75%;
 			}
 
-			.Restaurant-inspection {
+			.restaurant-inspection {
 				width: 25%;
 			}
 		}
@@ -88,14 +88,14 @@
 }
 
 @media screen and (min-width: 768px) {
-	.Restaurant-modal .Restaurant-contact .Restaurant-name {
+	.restaurant-modal .restaurant-contact .restaurant-name {
 		font-size: 2em;
 		line-height: 1em;
 	}
 }
 
 @media screen and (min-width: 1024px) {
-	.Restaurant-modal .Restaurant-contact .Restaurant-name {
+	.restaurant-modal .restaurant-contact .restaurant-name {
 		font-size: 3em;
 		line-height: 1.2em;
 	}
