@@ -9,7 +9,8 @@ export default class InspectionSeal extends Component {
 			alt: 'NYC Seal',
 			className: null,
 			src: (this.props.seal === "blue") ? blueSeal : greySeal,
-			style: null
+            style: null,
+            dataType: null
         };
         
         return (

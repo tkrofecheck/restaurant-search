@@ -7,7 +7,8 @@ export default class RestaurantPhoto extends Component {
 			className: null,
 			src: this.props.url,
 			alt: this.props.alt,
-			style: null
+			style: null,
+			dataType: null
 		};
 		
 		return (

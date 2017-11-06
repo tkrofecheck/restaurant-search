@@ -1,0 +1,58 @@
+.app-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: inherit;
+    flex: 9;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    &[view='home'] {
+        .search-results {
+            form {
+                display: none;
+            }
+
+            .jumbotron {
+                align-items: center;
+            }
+        }
+    }
+
+    &[view='results'] {
+        .restaurant-search {
+            position: fixed;
+            top: 15px;
+            right: 5%;
+            width: 50%;
+            height: 80px;
+
+            form {
+                position: relative;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+
+                select {
+                    display: none;
+                }
+            }
+        }
+        
+        .search-form {
+            display: flex;
+            align-items: flex-start;
+            z-index: 100;
+        }
+        
+        .search-results {
+            .jumbotron {
+                align-items: flex-start;
+            }
+        }
+    }
+
+    @import 'other/letterGrid';
+    @import 'other/restaurantGrid';
+}

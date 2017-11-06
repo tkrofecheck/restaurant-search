@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SearchForm from './searchForm';
+import SearchForm from '../components/searchForm';
 
 export default class AppBody extends Component {
     render() {

@@ -11,7 +11,8 @@ export default class Grade extends Component {
 			alt: null,
 			className: null,
 			src: null,
-			style: null
+			style: null,
+			dataType: null
 		};
 		var grade;
 
@@ -19,7 +20,8 @@ export default class Grade extends Component {
 			case 'A':
 				imageAttributes = {
 					src: gradeA,
-					alt: 'Grade A'
+					alt: 'Grade A',
+					dataType: this.props.value
 				};
 				grade = <Image attr={imageAttributes} />;
 				break;
@@ -27,7 +29,8 @@ export default class Grade extends Component {
 			case 'B':
 				imageAttributes = {
 					src: gradeB,
-					alt: 'Grade B'
+					alt: 'Grade B',
+					dataType: this.props.value
 				};
 				grade = <Image attr={imageAttributes} />;
 				break;
@@ -35,7 +38,8 @@ export default class Grade extends Component {
 			case 'C':
 				imageAttributes = {
 					src: gradeC,
-					alt: 'Grade C'
+					alt: 'Grade C',
+					dataType: this.props.value
 				};
 				grade = <Image attr={imageAttributes} />;
 				break;
@@ -43,7 +47,8 @@ export default class Grade extends Component {
 			default:
 				imageAttributes = {
 					src: gradeGP,
-					alt: 'Grade Pending'
+					alt: 'Grade Pending',
+					dataType: this.props.value
 				};
 				grade = <Image attr={imageAttributes} />;
 				break;

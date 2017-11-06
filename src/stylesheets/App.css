@@ -7,7 +7,6 @@
   /* styles for restaurant address */
   /* styles for inspection grade */
   /* styles for images - use classname set on image component */
-  /* styles for restaurant popup modal (consider making this more generic to allow reuse outside restaurant genre) */
   /* styles for inspection date */
   /* styles for phone number */
   /* styles for search box in header */
@@ -156,79 +155,6 @@
       width: 75%;
       opacity: .5;
       z-index: 1; }
-  .app .modal {
-    display: block !important; }
-  .app .restaurant-modal {
-    position: fixed;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -45%);
-    width: 85%;
-    height: 100%;
-    max-height: 85%;
-    background: #ffffff;
-    box-shadow: 0px 0px 1000000px 200px #555555;
-    z-index: 100;
-    font-size: 1em; }
-    .app .restaurant-modal.show {
-      display: block;
-      opacity: 0;
-      transition: opacity 500ms ease-in-out; }
-    .app .restaurant-modal.show.visible {
-      opacity: 1; }
-    .app .restaurant-modal .restaurant-details {
-      display: flex;
-      height: inherit; }
-      .app .restaurant-modal .restaurant-details .close {
-        position: absolute;
-        top: -35px;
-        right: 0px;
-        display: flex;
-        align-items: center;
-        text-shadow: none;
-        color: white;
-        opacity: 1;
-        font-weight: normal; }
-      .app .restaurant-modal .restaurant-details .close::after {
-        content: '\2716';
-        font-size: 1em;
-        width: 30px;
-        height: 30px;
-        border-radius: 15px;
-        background-color: #ffffff;
-        margin-left: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #8a8a8a; }
-    .app .restaurant-modal .restaurant-moreinfo {
-      width: 100%;
-      overflow-x: hidden;
-      overflow-y: auto; }
-      .app .restaurant-modal .restaurant-moreinfo .restaurant-info {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        outline: none;
-        border-bottom: 1px solid #ababab;
-        padding: 0 0 20px 0;
-        margin: 0; }
-        .app .restaurant-modal .restaurant-moreinfo .restaurant-info .restaurant-contact {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          width: 75%; }
-        .app .restaurant-modal .restaurant-moreinfo .restaurant-info .restaurant-inspection {
-          width: 25%; }
-  @media screen and (min-width: 768px) {
-    .app .restaurant-modal .restaurant-contact .restaurant-name {
-      font-size: 2em;
-      line-height: 1em; } }
-  @media screen and (min-width: 1024px) {
-    .app .restaurant-modal .restaurant-contact .restaurant-name {
-      font-size: 3em;
-      line-height: 1.2em; } }
   .app .date {
     display: flex;
     flex-direction: row;
@@ -248,11 +174,37 @@
     /* styles for restaurant photo */ }
     .app .restaurant .grade-letter-container {
       position: absolute;
-      top: 20%;
+      top: 30%;
       right: 2%;
       width: 75px;
       height: 75px;
       box-shadow: 0px 0px 3px #000000; }
+      .app .restaurant .grade-letter-container .inspection-seal,
+      .app .restaurant .grade-letter-container .grade-image {
+        width: 100%;
+        height: 100%; }
+      .app .restaurant .grade-letter-container .inspection-seal img {
+        align-self: flex-start;
+        width: 60%;
+        margin-top: 5px; }
+      .app .restaurant .grade-letter-container .grade-image img {
+        align-self: flex-start;
+        /* Defaults for Grade Pending */
+        margin-top: 15px;
+        width: 60%; }
+        .app .restaurant .grade-letter-container .grade-image img[data-type='A'] {
+          margin-top: 5px; }
+        .app .restaurant .grade-letter-container .grade-image img[data-type='B'] {
+          margin-top: 7px;
+          width: 47%; }
+        .app .restaurant .grade-letter-container .grade-image img[data-type='C'] {
+          margin-top: 5px; }
+      .app .restaurant .grade-letter-container .date {
+        position: absolute;
+        background: transparent;
+        bottom: 3px;
+        font-size: 1rem;
+        font-weight: 600; }
     .app .restaurant .inspection-info {
       display: none; }
     @media screen and (min-width: 768px) {
@@ -284,7 +236,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      height: 125px;
+      height: 150px;
       overflow: hidden; }
       .app .restaurant .photo img {
         width: 100%;
@@ -391,3 +343,11 @@
     z-index: 1; }
   .app .jumbotron {
     margin-bottom: 0; }
+  .app .modal-open .modal {
+    display: block !important; }
+
+/* styles for restaurant popup modal (consider making this more generic to allow reuse outside restaurant genre) */
+.modal {
+  display: block !important; }
+
+/* React Bootstrap Modal attaches to body - not .App */

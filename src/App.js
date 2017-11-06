@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AppHeader from './components/appHeader';
-import AppFooter from './components/appFooter';
-import AppBody from './components/appBody';
+import AppHeader from './base/appHeader';
+import AppFooter from './base/appFooter';
+import AppBody from './base/appBody';
 
 
 /*

@@ -1,0 +1,22 @@
+.app-footer,
+.app-header {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(14, 53, 78);
+    padding: 15px 5%;
+    text-align: left;
+    color: white;
+    z-index: 10;
+
+    img {
+        position: relative;
+        height: 40px;
+        left: -5px; /* logo png has padding - account for this for alignment */
+
+        @media screen and (min-width: 768px) {
+            height: 50px;
+        }
+    }
+}
