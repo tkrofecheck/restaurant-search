@@ -81,8 +81,6 @@ export default class SearchForm extends Component {
 
 				var data = res.body;
 
-
-				console.log('response', res);
 				_this.setState({
 					response: true,
 					responseData: data
